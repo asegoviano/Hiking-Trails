@@ -21,10 +21,10 @@ class LoginPage extends React.Component {
         return (
             <div className="base-container">
                 <div className="form-controller">
-                    <div className="controller" onClick={this.showLoginBox.bind(this)}>
+                    <div className="controller" onClick={this.showLoginBox.bind(this)} required >
                         Login
                     </div>
-                    <div className="controller" onClick={this.showRegisterBox.bind(this)}>
+                    <div className="controller" onClick={this.showRegisterBox.bind(this)} required >
                         Register
                     </div>
                 </div>
@@ -35,59 +35,93 @@ class LoginPage extends React.Component {
                 </div>
             </div>
             )
-    }
-}
-
-class LoginBox extends React.Component {
-
-        state = {
-            firstName: "firstname",
-            lastName: "lastname",
-            email: "email",
-            role: "User",
-            status: "Active",
-            username: "username",
-            password: "password"
-        };
-    updateusername = (t) => {
-        this.setState({username: t});
-        console.log("State of form = ", this.state);
-    }
-    updatepassword = (t) => {
-        this.setState({password: t});
-        console.log("State of form = ", this.state);
-    }
-     // create the user once the form has been submitted
-     handleFormSubmit = (e) => {
-        e.preventDefault();
-        console.log("in handle form submit", this.state);
-        this.loginUser(this.state);
-    }
-    //calls the spring rest service login method
-    loginUser = async (user) => {
-        console.log("entering login user method");
-        Axios.post(`http://localhost:8080/userapi/authenticate`, user)
-        .then(result => {
-            console.log(result);
-        })
-        window.location.href = "/home";
+        }
     }
 
-    render () {
-        return ( 
-        <div className="inner-container">
-        <form onSubmit={this.handleFormSubmit}>
-            <div className="box-header">
-                Login
+    function validate(firstName, lastName, email, username, password) {
+        const errors = [];
+
+        if (firstName.length < 2) {
+            errors.push("Firstname is required.");
+        }
+        if (lastName.length < 2) {
+            errors.push("LastName is required.");
+        }
+        if (email.length === 0) {
+            errors.push("Email is required.");
+        }
+        if (username.length < 8) {
+            errors.push("Username is required.");
+        }
+        if (password.length < 4) {
+            errors.push("Password is required.");
+        }
+
+        return errors;
+    }
+
+    class LoginBox extends React.Component {
+
+            state = {
+                firstName: "firstname",
+                lastName: "lastname",
+                email: "email",
+                role: "User",
+                status: "Active",
+                username: "username",
+                password: "password",
+                errors: []
+            };
+        updateusername = (t) => {
+            this.setState({username: t});
+            console.log("State of form = ", this.state);
+        }
+        updatepassword = (t) => {
+            this.setState({password: t});
+            console.log("State of form = ", this.state);
+        }
+        // create the user once the form has been submitted
+        handleFormSubmit = (e) => {
+            e.preventDefault();
+            console.log("in handle form submit", this.state);
+            const {firstName, lastName, email, username, password} = this.state;
+
+            const errors = validate(firstName, lastName, email, username, password);
+            if(errors.length > 0) {
+                this.setState({errors});
+                return;
+            }
+            this.loginUser(this.state);
+        }
+        //calls the spring rest service login method
+        loginUser = async (user) => {
+            console.log("entering login user method");
+            Axios.post(`http://localhost:8080/userapi/authenticate`, user)
+            .then(result => {
+                console.log(result);
+            })
+            window.location.href = "/home";
+        }
+
+        render () {
+            const {errors} = this.state;
+            return ( 
+            <div className="inner-container">
+            <form onSubmit={this.handleFormSubmit}>
+                    {errors.map(error => ( 
+                        <p key={error}>Error: {error}</p>
+                    ))}
+                <div className="box-header">
+                    Login
+                </div>
+                <div className="box">
+                    <FormInput id = "username" title = "Username" placeholder = "username" onChange={this.updateusername}/>
+                    <FormInput id = "password" title = "Password" placeholder = "password" onChange={this.updatepassword}/>
+
+                    <button type="submit" className="login-btn" >Login</button>
+                </div>
+                </form>
             </div>
-            <div className="box">
-                <FormInput id = "username" title = "Username" placeholder = "username" onChange={this.updateusername}/>
-                <FormInput id = "password" title = "Password" placeholder = "password" onChange={this.updatepassword}/>
-
-                <button type="submit" className="login-btn" >Login</button>
-            </div>
-            </form>
-        </div>
         )
     }
 }
@@ -102,7 +136,8 @@ class RegisterBox extends React.Component {
         role: "User",
         status: "Active",
         username: "username",
-        password: "password"
+        password: "password",
+        errors: []
     }
 
     // the updates occur as the onchange method is executed when data is entered into the form and
@@ -135,6 +170,13 @@ class RegisterBox extends React.Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
         console.log("in handle form submit", this.state);
+        const {firstName, lastName, email, username, password} = this.state;
+
+        const errors = validate(firstName, lastName, email, username, password);
+        if(errors.length > 0) {
+            this.setState({errors});
+            return;
+        }
         this.createUser(this.state);
     }
 
@@ -149,9 +191,13 @@ class RegisterBox extends React.Component {
     }
 
     render () {
+        const {errors} = this.state;
         return ( 
             <div className="inner-container">
                 <form onSubmit={this.handleFormSubmit}>
+                    {errors.map(error => ( 
+                        <p key={error}>Error: {error}</p>
+                    ))}
                 <div className="box-header">
                     Register
                 </div>

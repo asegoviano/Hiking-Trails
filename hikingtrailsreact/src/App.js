@@ -4,6 +4,7 @@ import RegisterPage from './components/RegisterPage';
 import HomePage from './components/HomePage';
 import AdminPage from './components/AdminPage';
 import ProfilePage from './components/ProfilePage';
+import ExplorePage from './components/ExplorePage';
 import { createBrowserHistory } from "history";
 import {Router, Route, Switch} from 'react-router-dom';
 
@@ -40,6 +41,11 @@ class App extends React.Component {
                     <Switch>
                         <Route exact path ="/Profile" render = { () =>{ return (
                             <ProfilePage/>
+                       )}}/>
+                    </Switch>
+                    <Switch>
+                        <Route exact path ="/Explore" render = { () =>{ return (
+                            <ExplorePage/>
                        )}}/>
                     </Switch>
                 </div>

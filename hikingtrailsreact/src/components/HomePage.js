@@ -1,6 +1,6 @@
 import React from 'react'
-
 import Navbar from "./Navbar";
+import Trail from '../images/trail3.jpg';
 
 class HomePage extends React.Component {
     render() {
@@ -9,6 +9,7 @@ class HomePage extends React.Component {
                 {/* displays the content from the navbar component */}
                 <Navbar/>
                 Welcome To The Home Page
+                {/* <img className="trail" src={Trail}/> */}
             </div>
         )
     }

@@ -14,7 +14,7 @@ class Navbar extends React.Component {
         return (
             <div>
                 <header>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                     <div className="container-fluid">
                         <span className="navbar-brand" href="#">HikingTrails</span>
                         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@ class Navbar extends React.Component {
                             <span className="nav-link" href="#"><Link to="/profile">Profile</Link></span>
                             <span className="nav-link" href="#"><Link to="/explore">Exlpore</Link></span>
                             <span className="nav-link" href="#"><Link to="/admin">Admin</Link></span>
-                            <span className="nav-link" href="#"><Link to="/login">Logout</Link></span>
+                            <span className="nav-link" href="#"><Link to="/">Logout</Link></span>
                         </div>
                         </div>
                     </div>

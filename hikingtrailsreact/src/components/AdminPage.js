@@ -38,12 +38,21 @@ class AdminPage extends React.Component {
         })
       }
 
-     async userStatus (id){
-        const res = await Axios.get('http://localhost:8080/userapi/editUser' + id).then(response => {
-            
+    changeUserStatus = (user) => {
+        if(user.status === "Active") {
+            user.status = "Suspended"
+            console.log("User status was changed,",user.status);
+        }
+        else {
+            user.status = "Active"
+            console.log("User Status was changed,",user.status);
+        }
+        Axios.post('http://localhost:8080/userapi/editUser', user)
+        .then(result => {
+            console.log(result);
         })
-      }
-      
+        window.location.href = "/Admin";
+    }      
 
       renderTableData() {
           return this.state.tableData.map((user,index) => {
@@ -53,7 +62,7 @@ class AdminPage extends React.Component {
                       <td>{username}</td>
                       <td>{email}</td>
                       <td>{role}</td>
-                      <td><button onClick={this.userStatus.bind(this,user.id, user.status)}>{status}</button></td>
+                      <td><button onClick={this.changeUserStatus.bind(this, user)}>{status}</button></td>
                       <td><button onClick={this.deleteUser.bind(this, user.id)} >Remove</button></td>
                   </tr>
               )
@@ -65,10 +74,10 @@ class AdminPage extends React.Component {
         return  (
             <div>
                 <Navbar />
-            <div>
-                Welcome Admin
+            <div className="pageTitle">
+                Administrator Page
             </div>
-            <Table>    
+            <Table className="reactTable" striped border hover>    
             <thead>
                     <tr>
                     <th>Username</th>

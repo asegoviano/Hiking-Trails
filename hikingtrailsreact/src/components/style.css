@@ -4,6 +4,7 @@ body,
   width: 100%;
   height: 100%;
   box-sizing: border-box;
+  background-color: #88bdbc;
 }
 
 .base-container {
@@ -15,6 +16,7 @@ body,
   flex-direction: column;
 }
 
+/* Login and Register Styling */
 .form-controller {
   visibility: visible;
   display: -webkit-box;
@@ -64,4 +66,25 @@ body,
   text-align: center;
   padding: 5px;
   margin-bottom: 17px;
+}
+
+/* image styling */
+.avatar {
+  height: 175px;
+  width: 175px;
+}
+
+.trail {
+  height: 500px;
+  max-width: 150%;
+  object-position: center top;
+  object-position: 100px 50px;
+}
+
+/* Admin Table  */
+.reactTable {
+  border: 6px solid;
+  max-width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }

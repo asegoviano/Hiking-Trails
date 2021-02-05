@@ -82,8 +82,8 @@ public class UserService {
 
     @PostMapping("/editUser")
     Boolean editUser(@RequestBody UserEntity user) {
-        User u = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getStatus(),
-                user.getRole(), user.getUsername(), user.getPassword());
+        User u = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole(),
+                user.getStatus(), user.getUsername(), user.getPassword());
         return service.editUser(u);
     }
 
