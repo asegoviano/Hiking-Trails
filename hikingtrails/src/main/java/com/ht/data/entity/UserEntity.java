@@ -2,7 +2,6 @@
  * Angel Segoviano 
  * 12/10/2020
  * User entity
- * Description----------------------
  */
 package com.ht.data.entity;
 

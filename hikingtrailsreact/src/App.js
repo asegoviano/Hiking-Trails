@@ -1,3 +1,9 @@
+/**
+ * Angel Segoviano 
+ * 12/10/2020
+ * App
+ * contrains the routes for each page
+ */
 import React from 'react';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';

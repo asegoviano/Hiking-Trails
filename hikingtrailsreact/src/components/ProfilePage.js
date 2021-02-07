@@ -1,3 +1,9 @@
+/**
+ * Angel Segoviano 
+ * 1/25/2021
+ * ProfilePage
+ * js page for displaying users profile information
+ */
 import React from 'react';
 import Navbar from './Navbar';
 import Avatar from '../images/avatar.png';

@@ -13,8 +13,7 @@ import org.springframework.data.mongodb.repository.Query;
 public interface UserRepository extends MongoRepository<UserEntity, String> {
 
     /**
-     * method created to specifically find by the users username to autheticate
-     * their account
+     * method created to find by the users username to autheticate their account
      * 
      * @param username
      * @return
@@ -22,6 +21,12 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
     @Query("{ 'username' : ?0 }")
     public UserEntity findbyUsername(String username);
 
+    /**
+     * method created to find by the users id
+     * 
+     * @param id
+     * @return
+     */
     @Query("{ 'id' : ?0 }")
     public UserEntity delete(String id);
 

@@ -1,3 +1,8 @@
+/**
+ * Angel Segoviano 
+ * 1/31/2021
+ * Trail Entity 
+ */
 package com.ht.data.entity;
 
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -24,6 +29,9 @@ public class TrailEntity {
     @Indexed(unique = true)
     String description;
 
+    /**
+     * Default Constructor
+     */
     public TrailEntity() {
         id = "";
         trailName = "";
@@ -33,6 +41,16 @@ public class TrailEntity {
         description = "";
     }
 
+    /**
+     * Non-Default Constructor
+     * 
+     * @param id
+     * @param trailName
+     * @param city
+     * @param state
+     * @param trailDistance
+     * @param description
+     */
     public TrailEntity(String id, String trailName, String city, String state, String trailDistance,
             String description) {
         this.id = id;
@@ -90,6 +108,5 @@ public class TrailEntity {
     public void setDescription(String description) {
         this.description = description;
     }
-    
-    
+
 }

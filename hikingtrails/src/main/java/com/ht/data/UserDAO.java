@@ -51,12 +51,19 @@ public class UserDAO implements UserDAOInterface<UserEntity> {
         return user;
     }
 
+    /**
+     * method for deleting a users account called by the user business service
+     */
     @Override
     public boolean delete(String id) {
         userRepository.deleteById(id);
         return true;
     }
 
+    /**
+     * method for updating a users account information called by the user business
+     * service
+     */
     @Override
     public boolean updateUser(UserEntity user) {
         userRepository.save(user);

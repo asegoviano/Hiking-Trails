@@ -1,3 +1,9 @@
+/**
+ * Angel Segoviano 
+ * 1/2/2021
+ * LoginPage
+ * js page for login and registering a user
+ */
 import React from 'react';
 import './style.css';
 import Axios from "axios";
@@ -9,10 +15,12 @@ class LoginPage extends React.Component {
         this.state = {isLoginOpen: true, isRegisterOpen: false};
     }
 
+    //displays the login form if the register form is not being displayed
     showLoginBox() {
         this.setState({isLoginOpen: true, isRegisterOpen: false});
     }
 
+    //displays the register form if the the login form is being displayed
     showRegisterBox() {
         this.setState({isRegisterOpen: true, isLoginOpen: false});
     }
@@ -38,6 +46,7 @@ class LoginPage extends React.Component {
         }
     }
 
+    //validation for all form inputs on both login and register forms
     function validate(firstName, lastName, email, username, password) {
         const errors = [];
 
@@ -50,18 +59,18 @@ class LoginPage extends React.Component {
         if (email.length === 0) {
             errors.push("Email is required.");
         }
-        if (username.length < 8) {
+        if (username.length < 4) {
             errors.push("Username is required.");
         }
         if (password.length < 4) {
             errors.push("Password is required.");
         }
-
         return errors;
     }
 
+    //login class contianing the logic for login and displaying the form
     class LoginBox extends React.Component {
-
+        //objects 
             state = {
                 firstName: "firstname",
                 lastName: "lastname",
@@ -72,10 +81,12 @@ class LoginPage extends React.Component {
                 password: "password",
                 errors: []
             };
+        //takes in the username that was entered into the form for the username field
         updateusername = (t) => {
             this.setState({username: t});
             console.log("State of form = ", this.state);
         }
+        //takes in the password that was enetered into the form for the password field
         updatepassword = (t) => {
             this.setState({password: t});
             console.log("State of form = ", this.state);
@@ -86,11 +97,13 @@ class LoginPage extends React.Component {
             console.log("in handle form submit", this.state);
             const {firstName, lastName, email, username, password} = this.state;
 
+            //calls the validate method and checks if all fields are meet the parameters that were set for validation
             const errors = validate(firstName, lastName, email, username, password);
             if(errors.length > 0) {
                 this.setState({errors});
                 return;
             }
+            //logs in user
             this.loginUser(this.state);
         }
         //calls the spring rest service login method
@@ -100,6 +113,7 @@ class LoginPage extends React.Component {
             .then(result => {
                 console.log(result);
             })
+            //routes user to home page after logging in 
             window.location.href = "/home";
         }
 
@@ -107,6 +121,7 @@ class LoginPage extends React.Component {
             const {errors} = this.state;
             return ( 
             <div className="inner-container">
+            {/* calls the handleFormSubmit when the submit button is clicked  */}
             <form onSubmit={this.handleFormSubmit}>
                     {errors.map(error => ( 
                         <p key={error}>Error: {error}</p>
@@ -140,27 +155,31 @@ class RegisterBox extends React.Component {
         errors: []
     }
 
-    // the updates occur as the onchange method is executed when data is entered into the form and
+    // the updates occur as the onchange method is executed when data is entered into the form for the firstname
     updatefirstName = (t) => {
         this.setState({firstName: t});
         console.log("state of form = ", this.state);
     }
 
+    // the updates occur as the onchange method is executed when data is entered into the form for the lastname
     updatelastName = (t) => {
         this.setState({lastName: t});
         console.log("state of form = ", this.state);
     }
 
+    // the updates occur as the onchange method is executed when data is entered into the form for the email
     updateemail = (t) => {
         this.setState({email: t});
         console.log("state of form = ", this.state);
     }
 
+    // the updates occur as the onchange method is executed when data is entered into the form for the username
     updateusername = (t) => {
         this.setState({username: t});
         console.log("state of form = ", this.state);
     }
 
+    // the updates occur as the onchange method is executed when data is entered into the form for the password
     updatepassword = (t) => {
         this.setState({password: t});
         console.log("state of form = ", this.state);
@@ -171,12 +190,14 @@ class RegisterBox extends React.Component {
         e.preventDefault();
         console.log("in handle form submit", this.state);
         const {firstName, lastName, email, username, password} = this.state;
-
+        
+        //calls the validate method and checks if all fields are meet the parameters that were set for validation
         const errors = validate(firstName, lastName, email, username, password);
         if(errors.length > 0) {
             this.setState({errors});
             return;
         }
+        //user is created
         this.createUser(this.state);
     }
 
@@ -187,6 +208,7 @@ class RegisterBox extends React.Component {
         .then(result => {
             console.log(result);
         })
+        //user is routed home
         window.location.href = "/home";
     }
 
@@ -194,6 +216,7 @@ class RegisterBox extends React.Component {
         const {errors} = this.state;
         return ( 
             <div className="inner-container">
+                {/* calls the handle form submit method */}
                 <form onSubmit={this.handleFormSubmit}>
                     {errors.map(error => ( 
                         <p key={error}>Error: {error}</p>

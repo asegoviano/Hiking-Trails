@@ -2,7 +2,6 @@
  * Angel Segoviano 
  * 12/10/2020
  * User model
- * Description----------------------
  */
 package com.ht.model;
 

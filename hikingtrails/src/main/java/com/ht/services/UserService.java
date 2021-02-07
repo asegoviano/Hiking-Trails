@@ -65,6 +65,7 @@ public class UserService {
     }
 
     /**
+     * rest service call to find all users
      * 
      * @return arraylist of all users
      */
@@ -75,11 +76,23 @@ public class UserService {
         return user;
     }
 
+    /**
+     * rest service call to delete a user
+     * 
+     * @param id
+     * @return
+     */
     @DeleteMapping("/delete/{id}")
     Boolean deleteUser(@PathVariable("id") String id) {
         return service.removeUser(id);
     }
 
+    /**
+     * rest service call to edit a users information
+     * 
+     * @param user
+     * @return
+     */
     @PostMapping("/editUser")
     Boolean editUser(@RequestBody UserEntity user) {
         User u = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole(),

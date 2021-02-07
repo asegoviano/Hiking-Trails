@@ -1,7 +1,13 @@
+/**
+ * Angel Segoviano 
+ * 12/10/2020
+ * Navbar
+ * js page for displaying navbar
+ */
 import React from 'react'
-//imports the routes created in the App.js that are referenced in the navbar
 import { Link } from 'react-router-dom';
 
+//method for displaying and routing the navbar 
 class Navbar extends React.Component {
 
     constructor(props) {

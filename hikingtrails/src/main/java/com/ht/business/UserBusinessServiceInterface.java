@@ -37,6 +37,9 @@ public interface UserBusinessServiceInterface {
 
     public String findById(String Id);
 
+    /**
+     * used to remove a user called by the business service
+     */
     public boolean removeUser(String id);
 
     /**
@@ -47,5 +50,12 @@ public interface UserBusinessServiceInterface {
      */
     public String findbyUsername(String username);
 
+    /**
+     * method used to edit a users account information called in the business
+     * service
+     * 
+     * @param user
+     * @return
+     */
     public boolean editUser(User user);
 }

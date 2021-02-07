@@ -2,7 +2,7 @@
  * Angel Segoviano 
  * 12/10/2020
  * UserBusinessService
- * UserBusinessService implements the UserBusinessServiceInterface and valls the UserDAO and passes the objects that are needed.
+ * UserBusinessService implements the UserBusinessServiceInterface and calls the UserDAO and passes the objects that are needed.
  */
 package com.ht.business;
 
@@ -79,6 +79,9 @@ public class UserBusinessService implements UserBusinessServiceInterface {
         return userDomain;
     }
 
+    /**
+     * method for removing User
+     */
     @Override
     public boolean removeUser(String id) {
         return service.delete(id);
@@ -94,6 +97,9 @@ public class UserBusinessService implements UserBusinessServiceInterface {
         return null;
     }
 
+    /**
+     * method for editing a user
+     */
     @Override
     public boolean editUser(User user) {
         UserEntity userEntity = new UserEntity(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(),

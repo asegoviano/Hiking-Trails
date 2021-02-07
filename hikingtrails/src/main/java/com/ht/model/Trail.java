@@ -1,3 +1,8 @@
+/**
+ * Angel Segoviano 
+ * 1/31/2021
+ * Trail model 
+ */
 package com.ht.model;
 
 public class Trail {
@@ -9,6 +14,9 @@ public class Trail {
     private String trailDistance;
     private String description;
 
+    /**
+     * Default Constructor
+     */
     public Trail() {
         id = "";
         trailName = "";
@@ -18,6 +26,16 @@ public class Trail {
         description = "";
     }
 
+    /**
+     * Non-Default Constructor
+     * 
+     * @param id
+     * @param trailName
+     * @param city
+     * @param state
+     * @param trailDistance
+     * @param description
+     */
     public Trail(String id, String trailName, String city, String state, String trailDistance, String description) {
         this.id = id;
         this.trailName = trailName;
