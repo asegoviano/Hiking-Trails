@@ -19,7 +19,7 @@ public class TrailBusinessService implements TrailBusinessServiceInterface {
         List<Trail> trailDomain = new ArrayList<Trail>();
         for (TrailEntity entity : trailEntity) {
             trailDomain.add(new Trail(entity.getId(), entity.getTrailName(), entity.getCity(), entity.getState(),
-                    entity.getTrailDistance()));
+                    entity.getTrailDistance(), entity.getDescription()));
         }
         return trailDomain;
     }

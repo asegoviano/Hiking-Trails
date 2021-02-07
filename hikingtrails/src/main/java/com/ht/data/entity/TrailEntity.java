@@ -21,20 +21,26 @@ public class TrailEntity {
     @Indexed(unique = true)
     String trailDistance;
 
+    @Indexed(unique = true)
+    String description;
+
     public TrailEntity() {
         id = "";
         trailName = "";
         city = "";
         state = "";
         trailDistance = "";
+        description = "";
     }
 
-    public TrailEntity(String id, String trailName, String city, String state, String trailDistance) {
+    public TrailEntity(String id, String trailName, String city, String state, String trailDistance,
+            String description) {
         this.id = id;
         this.trailName = trailName;
         this.city = city;
         this.state = state;
         this.trailDistance = trailDistance;
+        this.description = description;
     }
 
     public String getId() {
@@ -77,4 +83,13 @@ public class TrailEntity {
         this.trailDistance = trailDistance;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    
 }

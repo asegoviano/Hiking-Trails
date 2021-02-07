@@ -7,6 +7,7 @@ public class Trail {
     private String city;
     private String state;
     private String trailDistance;
+    private String description;
 
     public Trail() {
         id = "";
@@ -14,14 +15,16 @@ public class Trail {
         city = "";
         state = "";
         trailDistance = "";
+        description = "";
     }
 
-    public Trail(String id, String trailName, String city, String state, String trailDistance) {
+    public Trail(String id, String trailName, String city, String state, String trailDistance, String description) {
         this.id = id;
         this.trailName = trailName;
         this.city = city;
         this.state = state;
         this.trailDistance = trailDistance;
+        this.description = description;
     }
 
     public String getId() {
@@ -64,10 +67,18 @@ public class Trail {
         this.trailDistance = trailDistance;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String toString() {
-        return "Trails [city=" + city + ", id=" + id + ", state=" + state + ", trailDistance=" + trailDistance
-                + ", trailName=" + trailName + "]";
+        return "Trail [city=" + city + ", description=" + description + ", id=" + id + ", state=" + state
+                + ", trailDistance=" + trailDistance + ", trailName=" + trailName + "]";
     }
 
 }
