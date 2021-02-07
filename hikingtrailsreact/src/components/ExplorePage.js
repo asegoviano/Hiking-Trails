@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React from 'react';
 import Navbar from './Navbar';
-import Card from 'react-bootstrap/card';
+import Card from 'react-bootstrap/Card';
 
 class ExplorePage extends React.Component {
 
@@ -18,7 +18,7 @@ class ExplorePage extends React.Component {
     }
 
     async getTrailData(){
-        const res = await Axios.get('http://localhost:3000/trailapi/findAll')
+        const res = await Axios.get('http://localhost:8080/trailapi/findAll')
         console.log(res.data)
         this.setState({trailData: res.data})
     }
