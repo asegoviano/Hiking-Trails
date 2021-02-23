@@ -17,6 +17,14 @@ import {Router, Route, Switch} from 'react-router-dom';
 const history = createBrowserHistory();
 class App extends React.Component {
 
+    state = {passUserId: "111", role:"111", user: false}
+    callbackFunction = (userData, userRole) => {
+        console.log("in callbackfuction");
+        this.setState({passUserId: userData})
+        this.setState({role: userRole})
+        this.setState({user: true})
+    }
+
     render() {
 
         // creates the routes to access the pages listed below 
@@ -25,19 +33,21 @@ class App extends React.Component {
             <Router history = {history}>
                 <div>
                     <Switch> 
-                        <Route exact path="/" render ={ () => { return (
-                            <LoginPage />
+                    <Route exact path ="/" render = { () =>{ return (
+                            <LoginPage callmethod = {this.callbackFunction}/>
                         )}}/>
                     </Switch>
+                    <Route exact path ="/login" render = { () => (this.state.user ? <HomePage  dataFormParent={this.state}/> :  <LoginPage callmethod = {this.callbackFunction}/>)
+                        }/>
                     <Switch>
                         <Route exact path ="/Register" render = { () =>{ return (
                             <RegisterPage/>
                         )}}/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/home" render = { () =>{ return (
-                            <HomePage/>
-                       )}}/>
+                        <Route exact path ="/home" render = { () =>(
+                            <HomePage dataFormParent={this.state}/>
+                       )}/>
                     </Switch>
                     <Switch>
                         <Route exact path ="/Admin" render = { () =>{ return (

@@ -10,10 +10,8 @@ import Axios from "axios";
 import FormInput from './FormInput';
 
 class LoginPage extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {isLoginOpen: true, isRegisterOpen: false};
-    }
+    
+    state = {isLoginOpen: true, isRegisterOpen: false, id:"", role:""};
 
     //displays the login form if the register form is not being displayed
     showLoginBox() {
@@ -23,6 +21,12 @@ class LoginPage extends React.Component {
     //displays the register form if the the login form is being displayed
     showRegisterBox() {
         this.setState({isRegisterOpen: true, isLoginOpen: false});
+    }
+
+    test = (passid, passrole) => {
+        this.setState({id: passid})
+        this.setState({role: passrole})
+        this.props.callmethod(this.state.id, this.state.role);
     }
     
     render() {
@@ -38,7 +42,7 @@ class LoginPage extends React.Component {
                 </div>
                 <div className="form-container">
 
-                    {this.state.isLoginOpen && <LoginBox />}
+                    {this.state.isLoginOpen && <LoginBox testmethod = {this.test}/>}
                     {this.state.isRegisterOpen && <RegisterBox />}
                 </div>
             </div>
@@ -96,7 +100,6 @@ class LoginPage extends React.Component {
             e.preventDefault();
             console.log("in handle form submit", this.state);
             const {firstName, lastName, email, username, password} = this.state;
-
             //calls the validate method and checks if all fields are meet the parameters that were set for validation
             const errors = validate(firstName, lastName, email, username, password);
             if(errors.length > 0) {
@@ -107,21 +110,18 @@ class LoginPage extends React.Component {
             this.loginUser(this.state);
         }
         //calls the spring rest service login method
-        loginUser = async (user) => {
-            console.log("entering login user method");
-            Axios.post(`http://localhost:8080/userapi/authenticate`, user)
-            .then(result => {
-                console.log(result);
-            })
-            //routes user to home page after logging in 
-            window.location.href = "/home";
+        async loginUser(user){
+            const result = await Axios.post("http://localhost:8080/userapi/authenticate", user)
+            this.setState({role : result.data.role});
+            this.setState({status : result.data.status});
+            this.setState({id : result.data.id});
+            this.props.testmethod(this.state.id, this.state.role);
         }
 
         render () {
             const {errors} = this.state;
             return ( 
             <div className="inner-container">
-            {/* calls the handleFormSubmit when the submit button is clicked  */}
             <form onSubmit={this.handleFormSubmit}>
                     {errors.map(error => ( 
                         <p key={error}>Error: {error}</p>

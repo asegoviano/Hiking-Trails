@@ -7,8 +7,8 @@
 import Axios from 'axios';
 import React from 'react';
 import Navbar from './Navbar';
-import Card from 'react-bootstrap/Card';
-import Table from 'react-bootstrap/Table';
+import './style.css';
+import {Card, Button} from 'react-bootstrap';
 
 class ExplorePage extends React.Component {
 
@@ -40,28 +40,37 @@ class ExplorePage extends React.Component {
         return this.state.trailData.map((trail, index) => {
             const{id, trailName, city, state, trailDistance, description} = trail
             return (
-                <tr key={id}>
-                <td>{trailName}</td>
-                <td>{city}</td>
-                <td>{state}</td>
-                <td>{trailDistance}</td>
-                <td>{description}</td>
-                </tr>
+                <Card key={id} border="dark" style={{ width: '18rem' }}>
+                    <Card.Header> {trailName}</Card.Header>
+                    <Card.Body>
+                                <Card.Header>Location: {city}, {state}</Card.Header>
+                                <Card.Header>Distance: {trailDistance} mi.</Card.Header>
+                                <Card.Text>Description: {description}</Card.Text>
+                                <Card.Footer>
+                                <Button className="mr-2" onClick variant="primary">Bookmarks</Button>
+                                <Button className="mr-2" onClick variant="primary">Add Event</Button>
+                                </Card.Footer>
+                    </Card.Body>
+                </Card>
             )
         })  
     }
-
-    render() {
-        return (
+    render () {
+        return  (
             <div>
                 <Navbar />
-                <div>
-                Testing Explore explore page
+            <div className="pageTitle">
+                Explore Trails Page
+            </div>
+            <div className="cardContainer" >
+                <div className="trailCards">
+                    {this.renderTrailData()}
                 </div>
             </div>
+            </div>
         )
-
     }
+
 }
 
 export default ExplorePage;

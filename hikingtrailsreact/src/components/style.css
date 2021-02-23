@@ -74,6 +74,12 @@ body,
   margin-bottom: 17px;
 }
 
+/* Edit User Button */
+/* */
+.editButton {
+  align-content: center;
+}
+
 /* image styling */
 .avatar {
   height: 175px;
@@ -93,4 +99,21 @@ body,
   max-width: 75%;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* React-Bootstrap Cards*/
+.cardContainer {
+  max-width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trailCards {
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  align-content: center, space-around;
 }

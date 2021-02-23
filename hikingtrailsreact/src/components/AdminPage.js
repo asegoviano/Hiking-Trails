@@ -7,7 +7,7 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Axios from "axios";
-import Table from 'react-bootstrap/Table';
+import {Table, Button} from 'react-bootstrap';
 
 class AdminPage extends React.Component {
 
@@ -29,7 +29,7 @@ class AdminPage extends React.Component {
         console.log(res.data)
         this.setState({tableData: res.data})
     }
-      componentDidMount(){
+    componentDidMount(){
         this.getUsersData()
     }
 
@@ -82,9 +82,9 @@ class AdminPage extends React.Component {
                       <td>{email}</td>
                       <td>{role}</td>
                       {/* calls the changeUserStatus method */}
-                      <td><button onClick={this.changeUserStatus.bind(this, user)}>{status}</button></td>
+                      <td><Button variant="primary" onClick={this.changeUserStatus.bind(this, user)}>{status}</Button></td>
                       {/* calls the deleteUser method  */}
-                      <td><button onClick={this.deleteUser.bind(this, user.id)} >Remove</button></td>
+                      <td><Button variant="danger" onClick={this.deleteUser.bind(this, user.id)} >Remove</Button></td>
                   </tr>
               )
           })
