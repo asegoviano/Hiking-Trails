@@ -8,6 +8,8 @@ package com.ht.data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import com.ht.data.entity.UserEntity;
 import com.ht.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,14 +80,16 @@ public class UserDAO implements UserDAOInterface<UserEntity> {
      * @return the userentity to verify the user was found
      */
     @Override
-    public UserEntity authenticate(String username) {
-        //
-        return userRepository.findbyUsername(username);
+    public UserEntity authenticate(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
     @Override
-    public boolean findByID() {
-        return false;
+    public Optional<UserEntity> findById(String id) {
+        return userRepository.findById(id);
     }
 
+    public UserEntity findByUsername(UserEntity userEntity) {
+        return userRepository.findbyUsername(userEntity.getUsername());
+    }
 }

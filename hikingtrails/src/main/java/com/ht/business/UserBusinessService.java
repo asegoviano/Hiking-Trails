@@ -8,6 +8,8 @@ package com.ht.business;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import com.ht.data.UserDAOInterface;
 import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
@@ -46,13 +48,10 @@ public class UserBusinessService implements UserBusinessServiceInterface {
      * @param user taken to get the credentials
      */
     @Override
-    public User authentication(String user) {
-        // the user entity calls the dao interface for the authenticate method and then
-        // calls the model to get the users credentials
-        UserEntity userEntity = service.authenticate(user);
-        User testUser = new User(userEntity.getId(), userEntity.getFirstName(), userEntity.getLastName(),
-                userEntity.getEmail(), userEntity.getRole(), userEntity.getStatus(), userEntity.getUsername(),
-                userEntity.getPassword());
+    public User verifyUser(String username, String password) {
+        UserEntity userE = service.authenticate(username, password);
+        User testUser = new User(userE.getId(), userE.getFirstName(), userE.getLastName(), userE.getEmail(),
+                userE.getRole(), userE.getStatus(), userE.getUsername(), userE.getPassword());
         return testUser;
     }
 
@@ -88,8 +87,8 @@ public class UserBusinessService implements UserBusinessServiceInterface {
     }
 
     @Override
-    public String findById(String Id) {
-        return null;
+    public Optional<UserEntity> findById(String id) {
+        return service.findById(id);
     }
 
     @Override

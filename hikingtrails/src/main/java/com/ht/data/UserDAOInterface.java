@@ -7,6 +7,7 @@
 package com.ht.data;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.ht.data.entity.UserEntity;
 
@@ -36,8 +37,8 @@ public interface UserDAOInterface<T> {
      *             the database
      * @return user entity to verify the user exit
      */
-    public UserEntity authenticate(String user);
+    public UserEntity authenticate(String username, String password);
 
-    public boolean findByID();
+    public Optional<UserEntity> findById(String id);
 
 }

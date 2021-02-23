@@ -8,6 +8,7 @@ package com.ht.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.ht.business.UserBusinessServiceInterface;
 import com.ht.data.entity.UserEntity;
@@ -56,11 +57,14 @@ public class UserService {
      */
     @PostMapping("/authenticate")
     UserEntity authenticateUser(@RequestBody UserEntity user) {
-        User u = service.authentication(user.getUsername());
-        UserEntity user1 = new UserEntity(u.getId(), u.getFirstName(), u.getLastName(), u.getEmail(), u.getStatus(),
-                u.getRole(), u.getUsername(), u.getPassword());
+        System.out.println("testing authenticate");
+        User u = service.verifyUser(user.getUsername(), user.getPassword());
+        System.out.println("after authenticate");
+        UserEntity user1 = new UserEntity(u.getId(), u.getFirstName(), u.getLastName(), u.getEmail(), u.getRole(),
+                u.getStatus(), u.getUsername(), u.getPassword());
         if (user.getUsername().equals(user1.getUsername()) && user.getPassword().equals(user1.getPassword()))
             System.out.println("user has been authenticated");
+        System.out.println("user" + user1.toString());
         return user1;
     }
 
@@ -100,4 +104,8 @@ public class UserService {
         return service.editUser(u);
     }
 
+    @GetMapping("/findByUserId/{id}")
+    Optional<UserEntity> findById(@PathVariable("id") String id) {
+        return service.findById(id);
+    }
 }

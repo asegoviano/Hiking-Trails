@@ -7,6 +7,9 @@
 package com.ht.business;
 
 import java.util.List;
+import java.util.Optional;
+
+import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
 
 public interface UserBusinessServiceInterface {
@@ -24,7 +27,7 @@ public interface UserBusinessServiceInterface {
      *             if the user exist
      * @return true if the user is found in the databases
      */
-    public User authentication(String user);
+    public User verifyUser(String username, String passwrd);
 
     public boolean checkDuplicate(User user);
 
@@ -35,7 +38,13 @@ public interface UserBusinessServiceInterface {
      */
     public List<User> getAllUser();
 
-    public String findById(String Id);
+    /**
+     * finds user by Id
+     * 
+     * @param Id
+     * @return user Id
+     */
+    public Optional<UserEntity> findById(String id);
 
     /**
      * used to remove a user called by the business service
