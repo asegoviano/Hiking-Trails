@@ -1,7 +1,7 @@
 /**
  * Angel Segoviano 
  * 12/10/2020
- * UserBusinessService Interace
+ * UserBusinessInterace
  * the user business interface is implemented in the user business service which calls the methods that are listed below.
  */
 package com.ht.business;
@@ -9,7 +9,7 @@ package com.ht.business;
 import java.util.List;
 import com.ht.model.User;
 
-public interface UserBusinessServiceInterface {
+public interface UserBusinessInterface {
     /**
      * 
      * @param user is taken for the create method

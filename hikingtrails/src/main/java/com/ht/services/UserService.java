@@ -8,7 +8,7 @@ package com.ht.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.ht.business.UserBusinessServiceInterface;
+import com.ht.business.UserBusinessInterface;
 import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class UserService {
 
     // varaible for the user business service interface
     @Autowired
-    UserBusinessServiceInterface service;
+    UserBusinessInterface service;
 
     /**
      * rest service call to create a new user

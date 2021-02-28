@@ -13,7 +13,7 @@ import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserBusinessService implements UserBusinessServiceInterface {
+public class UserBusinessService implements UserBusinessInterface {
 
     // variable for UserDAO interface and the userEntity
     @Autowired
