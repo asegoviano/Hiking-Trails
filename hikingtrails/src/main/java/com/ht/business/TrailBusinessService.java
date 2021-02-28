@@ -8,7 +8,6 @@ package com.ht.business;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.ht.data.TrailDAOInterface;
 import com.ht.data.entity.TrailEntity;
 import com.ht.model.Trail;
@@ -39,4 +38,13 @@ public class TrailBusinessService implements TrailBusinessServiceInterface {
         }
         return trailDomain;
     }
+
+    @Override
+    public Trail findById(String id) {
+        TrailEntity trail = service.findById(id);
+        Trail trailEntity = new Trail(trail.getId(), trail.getTrailName(), trail.getCity(), trail.getState(),
+                trail.getTrailDistance(), trail.getDescription());
+        return trailEntity;
+    }
+
 }

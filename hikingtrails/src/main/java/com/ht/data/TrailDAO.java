@@ -7,10 +7,8 @@
 package com.ht.data;
 
 import java.util.List;
-
 import com.ht.data.entity.TrailEntity;
 import com.ht.data.repository.TrailRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class TrailDAO implements TrailDAOInterface<TrailEntity> {
@@ -22,9 +20,15 @@ public class TrailDAO implements TrailDAOInterface<TrailEntity> {
     TrailRepository trailRepository;
 
     /**
-     * calls the findall method from the trail business service to return a list of trails
+     * calls the findall method from the trail business service to return a list of
+     * trails
      */
     public List<TrailEntity> findAll() {
         return trailRepository.findAll();
     }
+
+    public TrailEntity findById(String id) {
+        return trailRepository.findByID(id);
+    }
+
 }

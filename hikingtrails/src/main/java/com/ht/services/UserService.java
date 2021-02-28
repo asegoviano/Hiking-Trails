@@ -8,8 +8,6 @@ package com.ht.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import com.ht.business.UserBusinessServiceInterface;
 import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
@@ -99,13 +97,14 @@ public class UserService {
      */
     @PostMapping("/editUser")
     Boolean editUser(@RequestBody UserEntity user) {
+        System.out.println("ID OF USER" + user.getId());
         User u = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole(),
                 user.getStatus(), user.getUsername(), user.getPassword());
         return service.editUser(u);
     }
 
     @GetMapping("/findByUserId/{id}")
-    Optional<UserEntity> findById(@PathVariable("id") String id) {
+    User findById(@PathVariable("id") String id) {
         return service.findById(id);
     }
 }

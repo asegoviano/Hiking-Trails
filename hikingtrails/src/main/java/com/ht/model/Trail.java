@@ -98,5 +98,4 @@ public class Trail {
         return "Trail [city=" + city + ", description=" + description + ", id=" + id + ", state=" + state
                 + ", trailDistance=" + trailDistance + ", trailName=" + trailName + "]";
     }
-
 }
