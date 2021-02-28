@@ -13,7 +13,7 @@ import com.ht.data.entity.TrailEntity;
 import com.ht.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class TrailBusinessService implements TrailBusinessServiceInterface {
+public class TrailBusinessService implements TrailBusinessInterface {
 
     /**
      * variable for TrailDAO interface and the user entity model

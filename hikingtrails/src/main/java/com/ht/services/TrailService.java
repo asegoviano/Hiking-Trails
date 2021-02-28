@@ -8,7 +8,7 @@ package com.ht.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.ht.business.TrailBusinessServiceInterface;
+import com.ht.business.TrailBusinessInterface;
 import com.ht.model.Trail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +27,7 @@ public class TrailService {
      * variable for the trail business service interface
      */
     @Autowired
-    TrailBusinessServiceInterface service;
+    TrailBusinessInterface service;
 
     /**
      * rest service call to find all trails
