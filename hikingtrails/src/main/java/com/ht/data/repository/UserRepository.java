@@ -6,8 +6,6 @@
  */
 package com.ht.data.repository;
 
-import java.util.Optional;
-
 import com.ht.data.entity.UserEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
@@ -43,6 +41,6 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
     public UserEntity delete(String id);
 
     @Query("{ 'id' : ?0 }")
-    public Optional<UserEntity> findById(String id);
+    public UserEntity findByID(String id);
 
 }

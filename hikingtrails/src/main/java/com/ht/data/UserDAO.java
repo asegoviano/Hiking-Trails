@@ -8,8 +8,6 @@ package com.ht.data;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import com.ht.data.entity.UserEntity;
 import com.ht.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +83,8 @@ public class UserDAO implements UserDAOInterface<UserEntity> {
     }
 
     @Override
-    public Optional<UserEntity> findById(String id) {
-        return userRepository.findById(id);
+    public UserEntity findById(String id) {
+        return userRepository.findByID(id);
     }
 
     public UserEntity findByUsername(UserEntity userEntity) {

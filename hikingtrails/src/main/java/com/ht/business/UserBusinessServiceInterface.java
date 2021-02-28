@@ -7,9 +7,6 @@
 package com.ht.business;
 
 import java.util.List;
-import java.util.Optional;
-
-import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
 
 public interface UserBusinessServiceInterface {
@@ -44,7 +41,7 @@ public interface UserBusinessServiceInterface {
      * @param Id
      * @return user Id
      */
-    public Optional<UserEntity> findById(String id);
+    public User findById(String id);
 
     /**
      * used to remove a user called by the business service

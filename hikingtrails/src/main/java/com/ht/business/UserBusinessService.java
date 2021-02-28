@@ -8,8 +8,6 @@ package com.ht.business;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import com.ht.data.UserDAOInterface;
 import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
@@ -17,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserBusinessService implements UserBusinessServiceInterface {
 
-    // variable for UserDAO interface and the user entity model
+    // variable for UserDAO interface and the userEntity
     @Autowired
     UserDAOInterface<UserEntity> service;
 
@@ -29,15 +27,12 @@ public class UserBusinessService implements UserBusinessServiceInterface {
      */
     @Override
     public User makeUser(User user) {
-        System.out.println("==============Entering Business Service makeUser");
         // uses the user entity for the DAOInterface to call the create method and uses
-        // the model for this method here
         UserEntity entity = new UserEntity(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(),
                 user.getRole(), user.getStatus(), user.getUsername(), user.getPassword());
         UserEntity test = service.create(entity);
         User testUser = new User(test.getId(), test.getFirstName(), test.getLastName(), test.getEmail(), test.getRole(),
                 test.getStatus(), test.getUsername(), test.getPassword());
-        System.out.println("==============Leaving Business Service makeUser");
         return testUser;
 
     }
@@ -87,8 +82,11 @@ public class UserBusinessService implements UserBusinessServiceInterface {
     }
 
     @Override
-    public Optional<UserEntity> findById(String id) {
-        return service.findById(id);
+    public User findById(String id) {
+        UserEntity user = service.findById(id);
+        User userEntity = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(),
+                user.getRole(), user.getStatus(), user.getUsername(), user.getPassword());
+        return userEntity;
     }
 
     @Override

@@ -7,8 +7,6 @@
 package com.ht.data;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.ht.data.entity.UserEntity;
 
 public interface UserDAOInterface<T> {
@@ -39,6 +37,6 @@ public interface UserDAOInterface<T> {
      */
     public UserEntity authenticate(String username, String password);
 
-    public Optional<UserEntity> findById(String id);
+    public UserEntity findById(String id);
 
 }
