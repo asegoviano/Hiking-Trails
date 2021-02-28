@@ -2,7 +2,7 @@
  * Angel Segoviano 
  * 12/10/2020
  * UserDAO
- * UserDAO that connects to the database
+ * UserDAO that connects to the database and implements the UserDAO Interface
  */
 package com.ht.data;
 

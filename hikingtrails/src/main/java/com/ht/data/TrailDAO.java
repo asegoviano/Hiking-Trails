@@ -2,7 +2,7 @@
  * Angel Segoviano 
  * 1/31/2021
  * TrailDAO 
- * TrailDAO thatconnects to the database and calls the TrailDAOInterface
+ * TrailDAO thatconnects to the database and implements the TrailDAOInterface
  */
 package com.ht.data;
 
