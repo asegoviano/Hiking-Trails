@@ -16,20 +16,16 @@ class ProfilePage extends React.Component {
         super(props);
         this.state = {
             show:false,
-            // userData: [{
-            //     firstName= "",
-            //     lastName="",
-            //     email="",
-            //     username="",
-            //     password=""
-            // }]   
-            userProfile: [{
+            userProfile: {
+                id: this.props.dataFormParent.passUserId,
                 firstName: "",
                 lastName: "",
                 email: "",
                 username: "",
-                password: ""
-            }],     
+                role: "",
+                password: "",
+                status:""
+            },     
         };
     }    
 
@@ -41,22 +37,56 @@ class ProfilePage extends React.Component {
         this.setState({show:!this.state.show})
     }
 
+    updatefirstName = (t) => {
+        this.setState({firstName: t});
+        this.setState({id: this.props.dataFormParent.passUserId});
+        this.setState({role:  this.state.userProfile.role})
+        this.setState({status:  this.state.userProfile.status})
+        console.log("state of form = ", this.state);
+     }
+    
+     updatelastName = (t) => {
+         this.setState({lastName: t});
+         console.log("state of form = ", this.state);
+     }
+ 
+     updateemail = (t) => {
+         this.setState({email: t});
+         console.log("state of form = ", this.state);
+     }
+ 
+     updateusername = (t) => {
+         this.setState({username: t});
+         console.log("state of form = ", this.state);
+     }
+ 
+     updatepassword = (t) => {
+         this.setState({password: t});
+         console.log("state of form = ", this.state);
+     }
+ 
+     // create the user once the form has been submitted
+     handleFormSubmit = (e) => {
+         e.preventDefault();
+         console.log("in handle editform submit", this.state);
+       
+         this.editUser(this.state);
+     }
+
     async getUserID() {
-        const res = await Axios.get('http://localhost:8080/userapi/editUser')
+        const res = await Axios.get(`http://localhost:8080/userapi/findByUserId/${this.state.userProfile.id}`)
         this.setState({userProfile: res.data})
+        console.log("data set + collected ", this.state.userProfile)
+    }
+
+    editUser = async (user) => {
+        console.log("IN HERE", user)
+        Axios.post(`http://localhost:8080/userapi/editUser`, user)
+
     }
 
     componentDidMount() {
         this.getUserID()
-    }
-
-    renderUserProfile() {
-        return this.state.userProfile.map((user, index) => {
-            const{id, firstName, lastName, email, username, password} = user
-            return (
-                <Button></Button>
-            )
-        })
     }
 
     render() {
@@ -66,29 +96,28 @@ class ProfilePage extends React.Component {
                 <div>
                     <h1>My Profile </h1>
                     <img className="avatar" src={Avatar}/>
-
                     <Button className="editButton" onClick={()=>{this.handleModal()}}>Edit MyProfile</Button>
+                   
                         <Modal show={this.state.show}>
+                        <form onSubmit={this.handleFormSubmit}>
                             <Modal.Header>Edit MyProfile</Modal.Header>
-                                <FormInput id="firstName" placeholder="First Name"/>
-                                <FormInput id="lastName" placeholder="Last Name"/>
-                                <FormInput id="email" placeholder="Email"/>
-                                <FormInput id="username" placeholder="Username"/>
-                                <FormInput id="password" placeholder="Password"/>
+                                <FormInput id="firstName" placeholder={this.state.userProfile.firstName} onChange={this.updatefirstName}/>
+                                <FormInput id="lastName" placeholder={this.state.userProfile.lastName} onChange={this.updatelastName}/>
+                                <FormInput id="email" placeholder={this.state.userProfile.email} onChange={this.updateemail}/>
+                                <FormInput id="username" placeholder={this.state.userProfile.username} onChange={this.updateusername}/>
+                                <FormInput id="password" placeholder={this.state.userProfile.password} onChange={this.updatepassword}/>
                             <Modal.Footer>
-                                <Button>Save</Button>
+                                <Button type="submit">Save</Button>
                                 <Button onClick={()=>{this.closeEditModal()}}>Cancel</Button>
                             </Modal.Footer>
+                            </form>
                         </Modal>
-
+                    
                 </div>
 
             </div>
         )
-    }
-
-
-    
+    }   
 }
 
 export default ProfilePage;

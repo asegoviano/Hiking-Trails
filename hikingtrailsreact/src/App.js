@@ -32,13 +32,10 @@ class App extends React.Component {
             
             <Router history = {history}>
                 <div>
-                    <Switch> 
-                    <Route exact path ="/" render = { () =>{ return (
-                            <LoginPage callmethod = {this.callbackFunction}/>
-                        )}}/>
-                    </Switch>
-                    <Route exact path ="/login" render = { () => (this.state.user ? <HomePage  dataFormParent={this.state}/> :  <LoginPage callmethod = {this.callbackFunction}/>)
+                    <Switch>
+                    <Route exact path ="/" render = { () => (this.state.user ? <HomePage  dataFormParent={this.state}/> :  <LoginPage callmethod = {this.callbackFunction}/>)
                         }/>
+                    </Switch>
                     <Switch>
                         <Route exact path ="/Register" render = { () =>{ return (
                             <RegisterPage/>
@@ -56,7 +53,7 @@ class App extends React.Component {
                     </Switch>
                     <Switch>
                         <Route exact path ="/Profile" render = { () =>{ return (
-                            <ProfilePage/>
+                            <ProfilePage dataFormParent={this.state}/>
                        )}}/>
                     </Switch>
                     <Switch>

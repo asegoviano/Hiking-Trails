@@ -58,9 +58,6 @@ class RegisterPage extends React.Component {
         })
         window.location.href = "/home";
     }
-    testButton = (t) => {
-        
-    }
     
     render() {
         return ( <div className="base-container">
