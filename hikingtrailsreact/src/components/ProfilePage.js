@@ -108,7 +108,7 @@ class ProfilePage extends React.Component {
                                 <FormInput id="password" placeholder={this.state.userProfile.password} onChange={this.updatepassword}/>
                             <Modal.Footer>
                                 <Button type="submit">Save</Button>
-                                <Button onClick={()=>{this.closeEditModal()}}>Cancel</Button>
+                                <Button onClick={()=>{this.closeModal()}}>Cancel</Button>
                             </Modal.Footer>
                             </form>
                         </Modal>
