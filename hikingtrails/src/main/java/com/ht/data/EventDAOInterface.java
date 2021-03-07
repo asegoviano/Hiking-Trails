@@ -13,9 +13,11 @@ public interface EventDAOInterface<T> {
 
     public EventEntity create(T t);
 
-    public List<EventEntity> findAllEvents();
+    public List<EventEntity> findAll();
 
     public List<EventEntity> findUserEvent();
+
+    public EventEntity findById(String id);
 
     public boolean updateEvent(EventEntity event);
 

@@ -8,20 +8,27 @@ package com.ht.data;
  */
 
 import java.util.List;
+
+import javax.swing.text.html.parser.Entity;
+
 import com.ht.data.entity.EventEntity;
+import com.ht.data.repository.EventRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class EventDAO implements EventDAOInterface<EventEntity> {
 
+    @Autowired
+    EventRepository eventRepository;
+
     @Override
-    public EventEntity create(EventEntity t) {
-        // TODO Auto-generated method stub
-        return null;
+    public EventEntity create(EventEntity event) {
+        return eventRepository.save(event);
     }
 
     @Override
-    public List<EventEntity> findAllEvents() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<EventEntity> findAll() {
+        return eventRepository.findAll();
     }
 
     @Override
@@ -31,15 +38,21 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
     }
 
     @Override
+    public EventEntity findById(String id) {
+        System.out.println("ID OF EVENT: " + id);
+        return eventRepository.findByID(id);
+    }
+
+    @Override
     public boolean updateEvent(EventEntity event) {
-        // TODO Auto-generated method stub
-        return false;
+        eventRepository.save(event);
+        return true;
     }
 
     @Override
     public boolean delete(String id) {
-        // TODO Auto-generated method stub
-        return false;
+        eventRepository.deleteById(id);
+        return true;
     }
 
 }

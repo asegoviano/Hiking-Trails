@@ -6,23 +6,23 @@ package com.ht.model;
 public class Event {
 
     private String id;
-    private Trail trail_id;
-    private User user_id;
+    private Trail trail;
+    private String user;
     private String userDistance;
     private String userDescription;
 
     public Event() {
         id = "";
-        this.trail_id = new Trail();
-        this.user_id = new User();
+        this.trail = new Trail();
+        this.user = "";
         userDistance = "";
         userDescription = "";
     }
 
-    public Event(String id, Trail trail_id, User user_id, String userDistance, String userDescription) {
+    public Event(String id, Trail trail, String user, String userDistance, String userDescription) {
         this.id = id;
-        this.trail_id = trail_id;
-        this.user_id = user_id;
+        this.trail = trail;
+        this.user = user;
         this.userDistance = userDistance;
         this.userDescription = userDescription;
     }
@@ -35,20 +35,20 @@ public class Event {
         this.id = id;
     }
 
-    public Trail getTrail_id() {
-        return trail_id;
+    public Trail getTrail() {
+        return trail;
     }
 
-    public void setTrail_id(Trail trail_id) {
-        this.trail_id = trail_id;
+    public void setTrail(Trail trail) {
+        this.trail = trail;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public String getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getUserDistance() {
@@ -69,8 +69,8 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Events [id=" + id + ", trail_id=" + trail_id + ", userDescription=" + userDescription
-                + ", userDistance=" + userDistance + ", user_id=" + user_id + "]";
+        return "Events [id=" + id + ", trail=" + trail + ", userDescription=" + userDescription
+                + ", userDistance=" + userDistance + ", user=" + user + "]";
     }
 
 }

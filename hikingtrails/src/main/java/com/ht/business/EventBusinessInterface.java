@@ -12,11 +12,13 @@ import com.ht.model.Event;
 
 public interface EventBusinessInterface {
 
-    public Event makeEvent(Event event);
+    public Event addEvent(Event event);
 
     public List<Event> getAllEvents();
 
     public List<Event> getUserEvents(Event event);
+
+    public Event findById(String id);
 
     public boolean editEvent(Event event);
 

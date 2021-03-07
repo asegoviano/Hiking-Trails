@@ -1,5 +1,7 @@
 package com.ht.data.entity;
 
+import com.ht.model.Trail;
+
 /**
  * Angel Segoviano 
  * 2/20/2021
@@ -14,9 +16,10 @@ public class EventEntity {
     @Indexed(unique = true)
     String id;
 
-    TrailEntity trail_id;
+    Trail trail;
 
-    UserEntity user_id;
+    @Indexed(unique = true)
+    String user;
 
     @Indexed(unique = true)
     String userDistance;
@@ -26,17 +29,16 @@ public class EventEntity {
 
     public EventEntity() {
         id = "";
-        this.trail_id = new TrailEntity();
-        this.user_id = new UserEntity();
+        this.trail = new Trail();
+        this.user = "";
         userDistance = "";
         userDescription = "";
     }
 
-    public EventEntity(String id, TrailEntity trail_id, UserEntity user_id, String userDistance,
-            String userDescription) {
+    public EventEntity(String id, Trail trail, String user, String userDistance, String userDescription) {
         this.id = id;
-        this.trail_id = trail_id;
-        this.user_id = user_id;
+        this.trail = trail;
+        this.user = user;
         this.userDistance = userDistance;
         this.userDescription = userDescription;
     }
@@ -49,20 +51,20 @@ public class EventEntity {
         this.id = id;
     }
 
-    public TrailEntity getTrail_id() {
-        return trail_id;
+    public Trail getTrail() {
+        return trail;
     }
 
-    public void setTrail_id(TrailEntity trail_id) {
-        this.trail_id = trail_id;
+    public void setTrail(Trail trail) {
+        this.trail = trail;
     }
 
-    public UserEntity getUser_id() {
-        return user_id;
+    public String getUser() {
+        return user;
     }
 
-    public void setUser_id(UserEntity user_id) {
-        this.user_id = user_id;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getUserDistance() {
@@ -83,7 +85,7 @@ public class EventEntity {
 
     @Override
     public String toString() {
-        return "EventsEntity [id=" + id + ", trail_id=" + trail_id + ", userDescription=" + userDescription
-                + ", userDistance=" + userDistance + ", user_id=" + user_id + "]";
+        return "EventsEntity [id=" + id + ", trail=" + trail + ", userDescription=" + userDescription
+                + ", userDistance=" + userDistance + ", user=" + user + "]";
     }
 }
