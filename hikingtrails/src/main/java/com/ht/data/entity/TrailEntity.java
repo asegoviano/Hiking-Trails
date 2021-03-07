@@ -5,13 +5,14 @@
  */
 package com.ht.data.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "trail")
 public class TrailEntity {
 
-    @Indexed(unique = true)
+    @Id
     String id;
 
     @Indexed(unique = true)
