@@ -41,14 +41,7 @@ public class UserDAO implements UserDAOInterface<UserEntity> {
      */
     @Override
     public List<UserEntity> findAll() {
-        List<UserEntity> user = new ArrayList<UserEntity>();
-        try {
-            Iterable<UserEntity> userIterable = (Iterable<UserEntity>) userRepository.findAll();
-            userIterable.forEach(user::add);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return user;
+        return userRepository.findAll();
     }
 
     /**
