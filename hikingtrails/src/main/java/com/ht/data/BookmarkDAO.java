@@ -1,7 +1,5 @@
 package com.ht.data;
 
-import java.util.ArrayList;
-
 /**
  * Angel Segoviano 
  * 2/20/2021

@@ -9,8 +9,6 @@ package com.ht.data;
 
 import java.util.List;
 
-import javax.swing.text.html.parser.Entity;
-
 import com.ht.data.entity.EventEntity;
 import com.ht.data.repository.EventRepository;
 

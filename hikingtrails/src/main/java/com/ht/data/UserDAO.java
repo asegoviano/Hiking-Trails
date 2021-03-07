@@ -6,7 +6,6 @@
  */
 package com.ht.data;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.ht.data.entity.UserEntity;
 import com.ht.data.repository.UserRepository;
