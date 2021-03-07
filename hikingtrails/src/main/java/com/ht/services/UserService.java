@@ -39,11 +39,9 @@ public class UserService {
      */
     @PostMapping("/create")
     UserEntity newUser(@RequestBody UserEntity user) {
-        System.out.println("entering controller");
         User newuser = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole(),
                 user.getStatus(), user.getUsername(), user.getPassword());
         newuser = service.makeUser(newuser);
-        System.out.println("LEAVING CONTROLER");
         return user;
     }
 
@@ -103,6 +101,12 @@ public class UserService {
         return service.editUser(u);
     }
 
+    /**
+     * rest service call to find user by id
+     * 
+     * @param id
+     * @return
+     */
     @GetMapping("/findByUserId/{id}")
     User findById(@PathVariable("id") String id) {
         return service.findById(id);
