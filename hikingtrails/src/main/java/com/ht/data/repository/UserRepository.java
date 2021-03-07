@@ -13,7 +13,7 @@ import org.springframework.data.mongodb.repository.Query;
 public interface UserRepository extends MongoRepository<UserEntity, String> {
 
     /**
-     * find by the users username to autheticate their account
+     * find by the users username
      * 
      * @param username
      * @return
