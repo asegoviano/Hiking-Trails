@@ -9,12 +9,22 @@ public class Bookmark {
     private Trail trail;
     private String user;
 
+    /**
+     * Default Contructor
+     */
     public Bookmark() {
         id = "";
         this.trail = new Trail();
         this.user = "";
     }
 
+    /**
+     * Non-Default Contructor
+     * 
+     * @param id    string for bookmark id
+     * @param trail model for trail
+     * @param user  string for users ID
+     */
     public Bookmark(String id, Trail trail, String user) {
         this.id = id;
         this.trail = trail;

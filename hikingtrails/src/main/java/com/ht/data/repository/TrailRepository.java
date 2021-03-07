@@ -12,6 +12,12 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface TrailRepository extends MongoRepository<TrailEntity, String> {
 
+    /**
+     * method for finding a trail by its ID
+     * 
+     * @param id
+     * @returns the trail specefied by the id
+     */
     @Query("{ 'id' : ?0 }")
     public TrailEntity findByID(String id);
 }

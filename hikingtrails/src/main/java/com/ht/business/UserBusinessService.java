@@ -81,6 +81,12 @@ public class UserBusinessService implements UserBusinessInterface {
         return service.delete(id);
     }
 
+    /**
+     * method for finding a user by their ID
+     * 
+     * @param id user id
+     * @return userEntity
+     */
     @Override
     public User findById(String id) {
         UserEntity user = service.findById(id);
@@ -96,6 +102,8 @@ public class UserBusinessService implements UserBusinessInterface {
 
     /**
      * method for editing a user
+     * @param user
+     * @return the results of the updated user
      */
     @Override
     public boolean editUser(User user) {

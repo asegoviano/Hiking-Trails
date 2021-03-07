@@ -54,18 +54,10 @@ public class User {
         this.password = password;
     }
 
-    /**
-     * gets users id
-     * 
-     * @return users id
-     */
     public String getId() {
         return id;
     }
 
-    /**
-     * @param id
-     */
     public void setId(String id) {
         this.id = id;
     }

@@ -18,5 +18,11 @@ public interface TrailDAOInterface<T> {
      */
     public List<TrailEntity> findAll();
 
+    /**
+     * gets a single trail
+     * 
+     * @param id
+     * @return trail
+     */
     public TrailEntity findById(String id);
 }

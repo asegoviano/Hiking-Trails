@@ -14,9 +14,12 @@ import org.springframework.data.mongodb.repository.Query;
 
 public interface BookmarkRepository extends MongoRepository<BookmarkEntity, String> {
 
-    @Query("{ 'id' : ?0 ")
-    public BookmarkEntity delete(String id);
-
+    /**
+     * method for finding a Bookmark by its ID
+     * 
+     * @param id
+     * @returns the bookmark specefied by the id
+     */
     @Query("{ 'id' : ?0 }")
     public BookmarkEntity findByID(String id);
 }

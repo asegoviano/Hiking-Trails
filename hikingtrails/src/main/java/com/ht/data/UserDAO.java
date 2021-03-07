@@ -25,10 +25,8 @@ public class UserDAO implements UserDAOInterface<UserEntity> {
      */
     @Override
     public UserEntity create(UserEntity user) {
-        System.out.println("==============Entering userDAO create method");
         // user repository usese mongodb save to add the user to the database
         userRepository.save(user);
-        System.out.println("==============Leaving userDAO create method");
         return user;
 
     }
@@ -74,11 +72,23 @@ public class UserDAO implements UserDAOInterface<UserEntity> {
         return userRepository.findByUsernameAndPassword(username, password);
     }
 
+    /**
+     * finds the userEntity by id
+     * 
+     * @param id user id
+     * @return userEntity
+     */
     @Override
     public UserEntity findById(String id) {
         return userRepository.findByID(id);
     }
 
+    /**
+     * find the userEntity by username
+     * 
+     * @param userEntity
+     * @return userEntity
+     */
     public UserEntity findByUsername(UserEntity userEntity) {
         return userRepository.findbyUsername(userEntity.getUsername());
     }

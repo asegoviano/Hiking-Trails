@@ -40,6 +40,12 @@ public interface UserRepository extends MongoRepository<UserEntity, String> {
     @Query("{ 'id' : ?0 }")
     public UserEntity delete(String id);
 
+    /**
+     * method for finding a user by its ID
+     * 
+     * @param id
+     * @returns the user specefied by the id
+     */
     @Query("{ 'id' : ?0 }")
     public UserEntity findByID(String id);
 

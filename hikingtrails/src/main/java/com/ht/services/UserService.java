@@ -53,21 +53,18 @@ public class UserService {
      */
     @PostMapping("/authenticate")
     UserEntity authenticateUser(@RequestBody UserEntity user) {
-        System.out.println("testing authenticate");
         User u = service.verifyUser(user.getUsername(), user.getPassword());
-        System.out.println("after authenticate");
         UserEntity user1 = new UserEntity(u.getId(), u.getFirstName(), u.getLastName(), u.getEmail(), u.getRole(),
                 u.getStatus(), u.getUsername(), u.getPassword());
         if (user.getUsername().equals(user1.getUsername()) && user.getPassword().equals(user1.getPassword()))
-            System.out.println("user has been authenticated");
-        System.out.println("user" + user1.toString());
+            System.out.println("user" + user1.toString());
         return user1;
     }
 
     /**
      * rest service call to find all users
      * 
-     * @return arraylist of all users
+     * @return list of all users
      */
     @GetMapping("/findAll")
     List<User> getAllUser() {
@@ -77,7 +74,7 @@ public class UserService {
     }
 
     /**
-     * rest service call to delete a user
+     * rest service call to delete a user by id
      * 
      * @param id
      * @return

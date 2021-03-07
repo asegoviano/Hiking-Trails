@@ -27,6 +27,9 @@ public class EventEntity {
     @Indexed(unique = true)
     String userDescription;
 
+    /**
+     * Default Constructor
+     */
     public EventEntity() {
         id = "";
         this.trail = new Trail();
@@ -35,6 +38,14 @@ public class EventEntity {
         userDescription = "";
     }
 
+    /**
+     * Non-Default Constructor
+     * @param id
+     * @param trail
+     * @param user
+     * @param userDistance
+     * @param userDescription
+     */
     public EventEntity(String id, Trail trail, String user, String userDistance, String userDescription) {
         this.id = id;
         this.trail = trail;

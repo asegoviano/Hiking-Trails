@@ -25,8 +25,19 @@ public interface UserDAOInterface<T> {
      */
     public List<UserEntity> findAll();
 
+    /**
+     * deletes a user by ID
+     * 
+     * @param id
+     */
     public boolean delete(String id);
 
+    /**
+     * updates the user from the database
+     * 
+     * @param user
+     * @return
+     */
     public boolean updateUser(UserEntity user);
 
     /**
@@ -37,6 +48,12 @@ public interface UserDAOInterface<T> {
      */
     public UserEntity authenticate(String username, String password);
 
+    /**
+     * get a single user by id
+     * 
+     * @param id
+     * @return user
+     */
     public UserEntity findById(String id);
 
 }

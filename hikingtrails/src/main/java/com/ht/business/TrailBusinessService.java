@@ -39,6 +39,11 @@ public class TrailBusinessService implements TrailBusinessInterface {
         return trailDomain;
     }
 
+    /**
+     * method for finding a trail by their ID
+     * @param id trail id
+     * @return trailEntity
+     */
     @Override
     public Trail findById(String id) {
         TrailEntity trail = service.findById(id);

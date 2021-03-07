@@ -29,13 +29,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/bookmarkapi")
 public class BookmarkService {
 
+    // variable for BookmarkBusinessInterface
     @Autowired
     BookmarkBusinessInterface<Bookmark> service;
 
     /**
+     * rest service call for creating a new bookmark
      * 
      * @param bookmark
-     * @return
+     * @return new user entity
      */
     @PostMapping("/create")
     Bookmark newBookmark(@RequestBody BookmarkEntity bookmark) {
@@ -45,8 +47,9 @@ public class BookmarkService {
     }
 
     /**
+     * rest service call for finding all bookmarks
      * 
-     * @return
+     * @return list of all bookmarks
      */
     @GetMapping("/findAll")
     List<Bookmark> getAllBookmarks() {
@@ -56,8 +59,10 @@ public class BookmarkService {
     }
 
     /**
+     * rest service call for finding a bookmark by their id
+     * 
      * @param id
-     * @return
+     * @return bookmarkEntity
      */
     @GetMapping("/findByBookmarkId/{id}")
     Bookmark findById(@PathVariable("id") String id) {
@@ -68,7 +73,6 @@ public class BookmarkService {
      * rest service call to delete a bookmark
      * 
      * @param id
-     * @return
      */
     @DeleteMapping("/delete/{id}")
     Boolean deleteBookmark(@PathVariable("id") String id) {

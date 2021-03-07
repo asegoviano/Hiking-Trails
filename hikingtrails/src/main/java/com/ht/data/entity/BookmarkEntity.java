@@ -21,12 +21,22 @@ public class BookmarkEntity {
     @Indexed(unique = true)
     private String user;
 
+    /**
+     * Defualt Constructor
+     */
     public BookmarkEntity() {
         this.id = "";
         this.trail = new Trail();
         this.user = "";
     }
 
+    /**
+     * Non-Default Constructor
+     * 
+     * @param id
+     * @param trail
+     * @param user
+     */
     public BookmarkEntity(String id, Trail trail, String user) {
         this.id = id;
         this.trail = trail;

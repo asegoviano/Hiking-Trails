@@ -11,6 +11,9 @@ public class Event {
     private String userDistance;
     private String userDescription;
 
+    /**
+     * Default Constructor
+     */
     public Event() {
         id = "";
         this.trail = new Trail();
@@ -19,6 +22,15 @@ public class Event {
         userDescription = "";
     }
 
+    /**
+     * Non-Default Constructor
+     * 
+     * @param id
+     * @param trail
+     * @param user
+     * @param userDistance
+     * @param userDescription
+     */
     public Event(String id, Trail trail, String user, String userDistance, String userDescription) {
         this.id = id;
         this.trail = trail;
@@ -69,8 +81,8 @@ public class Event {
 
     @Override
     public String toString() {
-        return "Events [id=" + id + ", trail=" + trail + ", userDescription=" + userDescription
-                + ", userDistance=" + userDistance + ", user=" + user + "]";
+        return "Events [id=" + id + ", trail=" + trail + ", userDescription=" + userDescription + ", userDistance="
+                + userDistance + ", user=" + user + "]";
     }
 
 }

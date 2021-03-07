@@ -41,6 +41,12 @@ public class TrailService {
         return trail;
     }
 
+    /**
+     * rest service call for finding trail by ID
+     * 
+     * @param id
+     * @return results of Trail Entity
+     */
     @GetMapping("/findByTrailId/{id}")
     Trail findById(@PathVariable("id") String id) {
         return service.findById(id);

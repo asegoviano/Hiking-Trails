@@ -110,4 +110,10 @@ public class TrailEntity {
         this.description = description;
     }
 
+    @Override
+    public String toString() {
+        return "TrailEntity [city=" + city + ", description=" + description + ", id=" + id + ", state=" + state
+                + ", trailDistance=" + trailDistance + ", trailName=" + trailName + "]";
+    }
+
 }
