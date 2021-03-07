@@ -1,5 +1,7 @@
 package com.ht.data.entity;
 
+import com.ht.model.Trail;
+
 /**
  * Angel Segoviano 
  * 2/20/2021
@@ -14,20 +16,21 @@ public class BookmarkEntity {
     @Indexed(unique = true)
     private String id;
 
-    private TrailEntity trail_id;
+    private Trail trail;
 
-    private UserEntity user_id;
+    @Indexed(unique = true)
+    private String user;
 
     public BookmarkEntity() {
         this.id = "";
-        this.trail_id = new TrailEntity();
-        this.user_id = new UserEntity();
+        this.trail = new Trail();
+        this.user = "";
     }
 
-    public BookmarkEntity(String id, TrailEntity trail_id, UserEntity user_id) {
+    public BookmarkEntity(String id, Trail trail, String user) {
         this.id = id;
-        this.trail_id = trail_id;
-        this.user_id = user_id;
+        this.trail = trail;
+        this.user = user;
     }
 
     public String getId() {
@@ -38,25 +41,25 @@ public class BookmarkEntity {
         this.id = id;
     }
 
-    public TrailEntity getTrail_id() {
-        return trail_id;
+    public Trail getTrail() {
+        return trail;
     }
 
-    public void setTrail_id(TrailEntity trail_id) {
-        this.trail_id = trail_id;
+    public void setTrail(Trail trail) {
+        this.trail = trail;
     }
 
-    public UserEntity getUser_id() {
-        return user_id;
+    public String getUser() {
+        return user;
     }
 
-    public void setUser_id(UserEntity user_id) {
-        this.user_id = user_id;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
-        return "BookmarksEntity [id=" + id + ", trail_id=" + trail_id + ", user_id=" + user_id + "]";
+        return "BookmarksEntity [id=" + id + ", trail=" + trail + ", user=" + user + "]";
     }
 
 }

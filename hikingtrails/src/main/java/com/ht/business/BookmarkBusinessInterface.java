@@ -19,4 +19,6 @@ public interface BookmarkBusinessInterface<T> {
     public List<Bookmark> getAllBookmarks();
 
     public List<Bookmark> getUserBookmark(Bookmark bookmark);
+
+    public Bookmark findById(String id);
 }

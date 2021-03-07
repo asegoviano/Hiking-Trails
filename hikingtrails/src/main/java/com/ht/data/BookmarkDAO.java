@@ -1,5 +1,7 @@
 package com.ht.data;
 
+import java.util.ArrayList;
+
 /**
  * Angel Segoviano 
  * 2/20/2021
@@ -8,6 +10,7 @@ package com.ht.data;
  */
 
 import java.util.List;
+
 import com.ht.data.entity.BookmarkEntity;
 import com.ht.data.repository.BookmarkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +22,29 @@ public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
 
     @Override
     public BookmarkEntity create(BookmarkEntity bookmark) {
-        return null;
+        return bookmarkRepository.save(bookmark);
     }
 
     @Override
-    public boolean delete(String id) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+    public List<BookmarkEntity> findAll() {
+        return bookmarkRepository.findAll();
 
-    @Override
-    public List<BookmarkEntity> findAllBookmarks() {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
     public List<BookmarkEntity> findUserBookmark() {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    @Override
+    public BookmarkEntity findById(String id) {
+        return bookmarkRepository.findByID(id);
+    }
+
+    @Override
+    public boolean delete(String id) {
+        bookmarkRepository.deleteById(id);
+        return true;
     }
 }

@@ -14,10 +14,12 @@ public interface BookmarkDAOInterface<T> {
 
     public BookmarkEntity create(T t);
 
-    public List<BookmarkEntity> findAllBookmarks();
+    public List<BookmarkEntity> findAll();
 
     public List<BookmarkEntity> findUserBookmark();
 
     public boolean delete(String id);
+
+    public BookmarkEntity findById(String id);
 
 }

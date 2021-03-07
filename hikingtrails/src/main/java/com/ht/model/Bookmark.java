@@ -6,19 +6,19 @@ package com.ht.model;
 public class Bookmark {
 
     private String id;
-    private Trail trail_id;
-    private User user_id;
+    private Trail trail;
+    private String user;
 
     public Bookmark() {
         id = "";
-        this.trail_id = new Trail();
-        this.user_id = new User();
+        this.trail = new Trail();
+        this.user = "";
     }
 
-    public Bookmark(String id, Trail trailEntity, User userEntity) {
+    public Bookmark(String id, Trail trail, String user) {
         this.id = id;
-        this.trail_id = trailEntity;
-        this.user_id = userEntity;
+        this.trail = trail;
+        this.user = user;
     }
 
     public String getId() {
@@ -29,25 +29,25 @@ public class Bookmark {
         this.id = id;
     }
 
-    public Trail getTrail_id() {
-        return trail_id;
+    public Trail getTrail() {
+        return trail;
     }
 
-    public void setTrail_id(Trail trail_id) {
-        this.trail_id = trail_id;
+    public void setTrail(Trail trail) {
+        this.trail = trail;
     }
 
-    public User getUser_id() {
-        return user_id;
+    public String getUser() {
+        return user;
     }
 
-    public void setUser_id(User user_id) {
-        this.user_id = user_id;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
-        return "Bookmarks [id=" + id + ", trail_id=" + trail_id + ", user_id=" + user_id + "]";
+        return "Bookmarks [id=" + id + ", trail=" + trail + ", user=" + user + "]";
     }
 
 }
