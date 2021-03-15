@@ -81,8 +81,8 @@ class LoginPage extends React.Component {
                 email: "email",
                 role: "User",
                 status: "Active",
-                username: "username",
-                password: "password",
+                username: "",
+                password: "",
                 errors: []
             };
         //takes in the username that was entered into the form for the username field
@@ -131,8 +131,7 @@ class LoginPage extends React.Component {
                 </div>
                 <div className="box">
                     <FormInput id = "username" title = "Username" placeholder = "username" onChange={this.updateusername}/>
-                    <FormInput id = "password" title = "Password" placeholder = "password" onChange={this.updatepassword}/>
-
+                    <FormInput id = "password" type="password" title = "Password" placeholder = "password" onChange={this.updatepassword}/>
                     <button type="submit" className="login-btn" >Login</button>
                 </div>
                 </form>
@@ -145,13 +144,13 @@ class RegisterBox extends React.Component {
 
     //state holds the default data speceified below
     state = {
-        firstName: "firstname",
-        lastName: "lastname",
-        email: "email",
+        firstName: "",
+        lastName: "",
+        email: "",
         role: "User",
         status: "Active",
-        username: "username",
-        password: "password",
+        username: "",
+        password: "",
         errors: []
     }
 
