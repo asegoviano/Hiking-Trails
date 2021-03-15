@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import Navbar from './Navbar';
-import { Tabs, Modal, Button } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import Avatar from '../images/avatar.png';
 import FormInput from './FormInput';
 import Axios from 'axios';
@@ -101,11 +101,11 @@ class ProfilePage extends React.Component {
                         <Modal show={this.state.show}>
                         <form onSubmit={this.handleFormSubmit}>
                             <Modal.Header>Edit MyProfile</Modal.Header>
-                                <FormInput id="firstName" placeholder={this.state.userProfile.firstName} onChange={this.updatefirstName}/>
-                                <FormInput id="lastName" placeholder={this.state.userProfile.lastName} onChange={this.updatelastName}/>
-                                <FormInput id="email" placeholder={this.state.userProfile.email} onChange={this.updateemail}/>
-                                <FormInput id="username" placeholder={this.state.userProfile.username} onChange={this.updateusername}/>
-                                <FormInput id="password" placeholder={this.state.userProfile.password} onChange={this.updatepassword}/>
+                                <FormInput id="firstName" title="First Name" placeholder={this.state.userProfile.firstName} onChange={this.updatefirstName} default={this.state.userProfile.firstName}/>
+                                <FormInput id="lastName" title="Last Name" placeholder={this.state.userProfile.lastName} onChange={this.updatelastName} default={this.state.userProfile.lastName}/>
+                                <FormInput id="email" title="Email" placeholder={this.state.userProfile.email} onChange={this.updateemail} default={this.state.userProfile.email}/>
+                                <FormInput id="username" title="Username" placeholder={this.state.userProfile.username} onChange={this.updateusername} default={this.state.userProfile.username}/>
+                                <FormInput id="password" title="Password" placeholder={this.state.userProfile.password} onChange={this.updatepassword} default={this.state.userProfile.password}/>
                             <Modal.Footer>
                                 <Button type="submit">Save</Button>
                                 <Button onClick={()=>{this.closeModal()}}>Cancel</Button>
