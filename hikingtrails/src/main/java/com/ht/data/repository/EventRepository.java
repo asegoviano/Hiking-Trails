@@ -1,5 +1,7 @@
 package com.ht.data.repository;
 
+import java.util.List;
+
 /**
  * Angel Segoviano 
  * 2/20/2021
@@ -22,4 +24,13 @@ public interface EventRepository extends MongoRepository<EventEntity, String> {
      */
     @Query("{ 'id' : ?0 }")
     public EventEntity findByID(String id);
+
+    /**
+     * method for finding all events by user ID
+     * 
+     * @param id
+     * @returns list of all events related to user id
+     */
+    @Query("{ 'user' : ?0 }")
+    public List<EventEntity> findAllByUserId(String id);
 }

@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Angel Segoviano 
- * 2/20/2021 
- * EventService REST Service API that communicates with the React front end application to send the data from one application to the other.
+ * Angel Segoviano 2/20/2021 EventService REST Service API that communicates
+ * with the React front end application to send the data from one application to
+ * the other.
  */
 
 // URI for connecting to React Application
@@ -35,6 +35,7 @@ public class EventService {
 
     /**
      * rest service call to create a new Event
+     * 
      * @param event
      * @return event
      */
@@ -47,7 +48,8 @@ public class EventService {
     }
 
     /**
-     * rest service call to find all events 
+     * rest service call to find all events
+     * 
      * @return list of all events
      */
     @GetMapping("/findAll")
@@ -59,6 +61,7 @@ public class EventService {
 
     /**
      * rest service call to find event by id
+     * 
      * @param id
      * @return results of EventEntity
      */
@@ -68,7 +71,20 @@ public class EventService {
     }
 
     /**
+     * rest service call for finding all bookmarks by userID
+     * 
+     * @return list of all bookmarks related to the userID
+     */
+    @GetMapping("/findByUserId/{id}")
+    List<Event> getAllByUserId(@PathVariable("id") String id) {
+        List<Event> bookmark = new ArrayList<Event>();
+        bookmark = service.getAllByUserId(id);
+        return bookmark;
+    }
+
+    /**
      * rest service call to edit an event
+     * 
      * @param event
      * @return
      */
@@ -81,6 +97,7 @@ public class EventService {
 
     /**
      * rest service call to delete user by id
+     * 
      * @param id
      * @return
      */

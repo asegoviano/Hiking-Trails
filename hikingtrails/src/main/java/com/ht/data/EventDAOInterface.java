@@ -31,7 +31,7 @@ public interface EventDAOInterface<T> {
      * 
      * @return list of event entities by user ID
      */
-    public List<EventEntity> findUserEvent();
+    public List<EventEntity> findAllByUserId(String id);
 
     /**
      * get a single event by id

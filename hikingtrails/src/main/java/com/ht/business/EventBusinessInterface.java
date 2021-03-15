@@ -24,15 +24,7 @@ public interface EventBusinessInterface {
      * @returns a list of EventEntity instances
      */
     public List<Event> getAllEvents();
-
-    /**
-     * displays all events by a user id
-     * 
-     * @param event
-     * @return list of EventEntity instances by user id
-     */
-    public List<Event> getUserEvents(Event event);
-
+    
     /**
      * finds the specefied Event
      * 
@@ -40,6 +32,14 @@ public interface EventBusinessInterface {
      * @return eventEntity
      */
     public Event findById(String id);
+    
+    /**
+     * used for display all events by a user id
+     * 
+     * @param bookmark
+     * @return a list of eventEntity instance by user id
+     */
+    public List<Event> getAllByUserId(String id);
 
     /**
      * edits the event created by user

@@ -7,7 +7,6 @@ package com.ht.business;
  * 
  */
 
-
 import java.util.ArrayList;
 import java.util.List;
 import com.ht.data.EventDAOInterface;
@@ -57,9 +56,14 @@ public class EventBusinessService implements EventBusinessInterface {
      * method for getting Events by their User ID
      */
     @Override
-    public List<Event> getUserEvents(Event event) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Event> getAllByUserId(String id) {
+        List<EventEntity> eventEntity = service.findAllByUserId(id);
+        List<Event> eventDomain = new ArrayList<Event>();
+        for (EventEntity entity : eventEntity) {
+            eventDomain.add(new Event(entity.getId(), entity.getTrail(), entity.getUser(), entity.getUserDistance(),
+                    entity.getUserDescription()));
+        }
+        return eventDomain;
     }
 
     /**

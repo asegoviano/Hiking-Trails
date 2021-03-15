@@ -47,9 +47,8 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
      * @return list of eventEntity
      */
     @Override
-    public List<EventEntity> findUserEvent() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<EventEntity> findAllByUserId(String id) {
+        return eventRepository.findAllByUserId(id);
     }
 
     /**
