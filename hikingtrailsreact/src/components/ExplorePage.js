@@ -22,7 +22,47 @@ class ExplorePage extends React.Component {
                 trailDistance: "",
                 description: "",
             }],
+            bookmarkModel: {
+                user: "",
+                trail: {
+                    id: "",
+                    trailName: "",
+                    city: "",
+                    state: "",
+                    trailDistance: "",
+                    description: "",
+                }
+            },
+            eventModel: {
+                user: "",
+                userDistnace: "",
+                userDescription: "",
+                trail: {
+                    id: "",
+                    trailName: "",
+                    city: "",
+                    state: "",
+                    trailDistance: "",
+                    description: "",
+                }
+            },
         };
+        
+    }
+
+    // sets the trailData that was clicked on and user id for creating the bookmark  
+    async addBookmark(traildata){
+       let userID = this.props.dataFormParent;
+       await this.setState({bookmarkModel:{trail:traildata, user:userID}});
+        console.log("testing bookmark ", this.state.bookmarkModel);
+        console.log("STATE ", this.state)
+        const bookData = this.state.bookmarkModel
+        this.bookmarkCreate(bookData);
+    }
+    // calls the rest service call for creating the bookmark using the information from the method addBookmark()
+    async bookmarkCreate(bookData){
+        const res = await Axios.post('http://localhost:8080/bookmarkapi/create', bookData)
+        console.log(res.data)
     }
 
     //calls the rest service call for finding all trails from the Spring boot application using the url
@@ -44,11 +84,11 @@ class ExplorePage extends React.Component {
                     <Card.Header> {trailName}</Card.Header>
                     <Card.Body>
                                 <Card.Header>Location: {city}, {state}</Card.Header>
-                                <Card.Header>Distance: {trailDistance} mi.</Card.Header>
+                                <Card.Header>Distance: {trailDistance} miles</Card.Header>
                                 <Card.Text>Description: {description}</Card.Text>
                                 <Card.Footer>
-                                <Button className="mr-2" onClick variant="primary">Bookmarks</Button>
-                                <Button className="mr-2" onClick variant="primary">Add Event</Button>
+                                <Button className="mr-2" onClick variant="primary" onClick={() => this.addBookmark(trail)} >Add Bookmark</Button>
+                                <Button className="mr-2" onClick variant="primary" >Add Event</Button>
                                 </Card.Footer>
                     </Card.Body>
                 </Card>
