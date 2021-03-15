@@ -69,6 +69,18 @@ public class BookmarkService {
         return service.findById(id);
     }
 
+     /**
+     * rest service call for finding all bookmarks by userID
+     * 
+     * @return list of all bookmarks related to the userID
+     */
+    @GetMapping("/findByUserId/{id}")
+    List<Bookmark> getAllByUserId(@PathVariable("id") String id) {
+        List<Bookmark> bookmark = new ArrayList<Bookmark>();
+        bookmark = service.getAllByUserId(id);
+        return bookmark;
+    }
+
     /**
      * rest service call to delete a bookmark
      * 

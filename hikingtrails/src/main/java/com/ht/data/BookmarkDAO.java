@@ -47,9 +47,8 @@ public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
      * @return list of bookmarkEntity
      */
     @Override
-    public List<BookmarkEntity> findUserBookmark() {
-        // TODO Auto-generated method stub
-        return null;
+    public List<BookmarkEntity> findAllByUserId(String id) {
+        return bookmarkRepository.findAllByUserId(id);
     }
 
     /**

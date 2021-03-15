@@ -57,9 +57,13 @@ public class BookmarkBusinessService implements BookmarkBusinessInterface<Bookma
      * method for getting bookmarks by their User ID
      */
     @Override
-    public List<Bookmark> getUserBookmark(Bookmark bookmark) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<Bookmark> getAllByUserId(String id) {
+        List<BookmarkEntity> bookmarkEntity = service.findAllByUserId(id);
+        List<Bookmark> bookmarkDomain = new ArrayList<Bookmark>();
+        for (BookmarkEntity entity : bookmarkEntity) {
+            bookmarkDomain.add(new Bookmark(entity.getId(), entity.getTrail(), entity.getUser()));
+        }
+        return bookmarkDomain;
     }
 
     /**

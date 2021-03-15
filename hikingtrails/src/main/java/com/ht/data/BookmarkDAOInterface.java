@@ -32,7 +32,7 @@ public interface BookmarkDAOInterface<T> {
      * 
      * @return list of all bookmarks by their user id
      */
-    public List<BookmarkEntity> findUserBookmark();
+    public List<BookmarkEntity> findAllByUserId(String id);
 
     /**
      * get a single bookmark by id

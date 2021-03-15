@@ -20,26 +20,30 @@ public interface BookmarkBusinessInterface<T> {
 
     /**
      * removes a bookmark
+     * 
      * @param id
      */
     public boolean removeBookmark(String id);
 
     /**
      * used for display all bookmarks
+     * 
      * @return a list of BookmarkEntity instances
      */
     public List<Bookmark> getAllBookmarks();
 
     /**
-     * used for display all bookmarks by a user id 
+     * used for display all bookmarks by a user id
+     * 
      * @param bookmark
      * @return a list of BookmarkEntity instance by user id
      */
-    public List<Bookmark> getUserBookmark(Bookmark bookmark);
+    public List<Bookmark> getAllByUserId(String id);
 
     /**
-     * finds the specefied bookmark 
-     * @param id 
+     * finds the specefied bookmark
+     * 
+     * @param id
      * @return bookmarkEntity
      */
     public Bookmark findById(String id);
