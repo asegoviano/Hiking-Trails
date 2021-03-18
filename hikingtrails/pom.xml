@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ht</groupId>
-	<artifactId>hikingtrails</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>hikingtrails</name>
+		<artifactId>hikingtrails</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+				<name>hikingtrails</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
