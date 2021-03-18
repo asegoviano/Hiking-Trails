@@ -13,6 +13,9 @@ import java.util.List;
 import com.ht.business.BookmarkBusinessInterface;
 import com.ht.data.entity.BookmarkEntity;
 import com.ht.model.Bookmark;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +32,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/bookmarkapi")
 public class BookmarkService {
 
+    Logger logger = LoggerFactory.getLogger(BookmarkService.class);
+
     // variable for BookmarkBusinessInterface
     @Autowired
     BookmarkBusinessInterface<Bookmark> service;
@@ -41,8 +46,10 @@ public class BookmarkService {
      */
     @PostMapping("/create")
     Bookmark newBookmark(@RequestBody BookmarkEntity bookmark) {
+        logger.info("Entering newBookmark() in BookmarkService");
         Bookmark newBookmark = new Bookmark(bookmark.getId(), bookmark.getTrail(), bookmark.getUser());
         newBookmark = service.addBookmark(newBookmark);
+        logger.info("Leaving newBookmark() in BookmarkService");
         return newBookmark;
     }
 
@@ -53,8 +60,10 @@ public class BookmarkService {
      */
     @GetMapping("/findAll")
     List<Bookmark> getAllBookmarks() {
+        logger.info("Entering getAllBookmarks() in BookmarkService");
         List<Bookmark> bookmark = new ArrayList<Bookmark>();
         bookmark = service.getAllBookmarks();
+        logger.info("Leaving getAllBookmarks() in BookmarkService");
         return bookmark;
     }
 
@@ -66,6 +75,7 @@ public class BookmarkService {
      */
     @GetMapping("/findByBookmarkId/{id}")
     Bookmark findById(@PathVariable("id") String id) {
+        logger.info("Entering findById() in BookmarkService");
         return service.findById(id);
     }
 
@@ -76,8 +86,10 @@ public class BookmarkService {
      */
     @GetMapping("/findByUserId/{id}")
     List<Bookmark> getAllByUserId(@PathVariable("id") String id) {
+        logger.info("Entering getAllByUserId() in BookmarkService");
         List<Bookmark> bookmark = new ArrayList<Bookmark>();
         bookmark = service.getAllByUserId(id);
+        logger.info("Leaving getAllByUserId() in BookmarkService");
         return bookmark;
     }
 
@@ -88,6 +100,7 @@ public class BookmarkService {
      */
     @DeleteMapping("/delete/{id}")
     Boolean deleteBookmark(@PathVariable("id") String id) {
+        logger.info("Entering deleteBookmark() in BookmarkService");
         return service.removeBookmark(id);
     }
 }

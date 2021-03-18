@@ -7,6 +7,8 @@ import com.ht.business.EventBusinessInterface;
 import com.ht.data.entity.EventEntity;
 import com.ht.model.Event;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/eventapi")
 public class EventService {
 
+    Logger logger = LoggerFactory.getLogger(EventService.class);
+
     // variable for EventBusinessInterface
     @Autowired
     EventBusinessInterface service;
@@ -41,9 +45,10 @@ public class EventService {
      */
     @PostMapping("/create")
     Event newEvent(@RequestBody EventEntity event) {
-        Event newevent = new Event(event.getId(), event.getTrail(), event.getUser(), event.getUserDistance(),
-                event.getUserDescription());
+        logger.info("Entering newEvent() in EventService");
+        Event newevent = new Event(event.getId(), event.getTrail(), event.getUser(), event.getUserDistance(), event.getUserDescription());
         newevent = service.addEvent(newevent);
+        logger.info("Leaving newEvent() in EventService");
         return newevent;
     }
 
@@ -54,8 +59,10 @@ public class EventService {
      */
     @GetMapping("/findAll")
     List<Event> getAllEvents() {
+        logger.info("Entering getAllEvents() in EventService");
         List<Event> event = new ArrayList<Event>();
         event = service.getAllEvents();
+        logger.info("Leaving getAllEvents() in EventService");
         return event;
     }
 
@@ -67,6 +74,7 @@ public class EventService {
      */
     @GetMapping("/findByEventId/{id}")
     Event findById(@PathVariable("id") String id) {
+        logger.info("Entering findById() in EventService");
         return service.findById(id);
     }
 
@@ -77,8 +85,10 @@ public class EventService {
      */
     @GetMapping("/findByUserId/{id}")
     List<Event> getAllByUserId(@PathVariable("id") String id) {
+        logger.info("Entering getAllByUserId() in EventService");
         List<Event> bookmark = new ArrayList<Event>();
         bookmark = service.getAllByUserId(id);
+        logger.info("Entering getAllByUserId() in EventService");
         return bookmark;
     }
 
@@ -90,8 +100,9 @@ public class EventService {
      */
     @PostMapping("/editEvent")
     Boolean editEvent(@RequestBody EventEntity event) {
-        Event e = new Event(event.getId(), event.getTrail(), event.getUser(), event.getUserDistance(),
-                event.getUserDescription());
+        logger.info("Entering editEvent() in EventService");
+        Event e = new Event(event.getId(), event.getTrail(), event.getUser(), event.getUserDistance(), event.getUserDescription());
+        logger.info("Leaving edtEvent() in EventService");
         return service.editEvent(e);
     }
 
@@ -103,6 +114,7 @@ public class EventService {
      */
     @DeleteMapping("/delete/{id}")
     Boolean deleteUser(@PathVariable("id") String id) {
+        logger.info("Entering deleteUser() in EventService");
         return service.removeEvent(id);
     }
 

@@ -11,9 +11,14 @@ import java.util.List;
 import com.ht.data.TrailDAOInterface;
 import com.ht.data.entity.TrailEntity;
 import com.ht.model.Trail;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class TrailBusinessService implements TrailBusinessInterface {
+
+    Logger logger = LoggerFactory.getLogger(TrailBusinessService.class);
 
     /**
      * variable for TrailDAO interface and the user entity model
@@ -28,6 +33,7 @@ public class TrailBusinessService implements TrailBusinessInterface {
      */
     @Override
     public List<Trail> getAllTrail() {
+        logger.info("Entering getAllTrail() in TrailBusinessService");
         // calls the DAOinterface findAll method
         List<TrailEntity> trailEntity = service.findAll();
         // create an array list of the trails
@@ -36,19 +42,23 @@ public class TrailBusinessService implements TrailBusinessInterface {
             trailDomain.add(new Trail(entity.getId(), entity.getTrailName(), entity.getCity(), entity.getState(),
                     entity.getTrailDistance(), entity.getDescription()));
         }
+        logger.info("Leaving getAllTrail() in TrailBusinessService");
         return trailDomain;
     }
 
     /**
      * method for finding a trail by their ID
+     * 
      * @param id trail id
      * @return trailEntity
      */
     @Override
     public Trail findById(String id) {
+        logger.info("Entering findById() in TrailBusinessService");
         TrailEntity trail = service.findById(id);
         Trail trailEntity = new Trail(trail.getId(), trail.getTrailName(), trail.getCity(), trail.getState(),
                 trail.getTrailDistance(), trail.getDescription());
+        logger.info("Leaving findById() in TrailBusinessService");
         return trailEntity;
     }
 

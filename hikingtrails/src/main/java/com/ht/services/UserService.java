@@ -11,6 +11,9 @@ import java.util.List;
 import com.ht.business.UserBusinessInterface;
 import com.ht.data.entity.UserEntity;
 import com.ht.model.User;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,6 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/userapi")
 public class UserService {
 
+    Logger logger = LoggerFactory.getLogger(UserService.class);
+
     // varaible for the user business service interface
     @Autowired
     UserBusinessInterface service;
@@ -39,9 +44,11 @@ public class UserService {
      */
     @PostMapping("/create")
     UserEntity newUser(@RequestBody UserEntity user) {
+        logger.info("Entering  newUser() in UserService");
         User newuser = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole(),
                 user.getStatus(), user.getUsername(), user.getPassword());
         newuser = service.makeUser(newuser);
+        logger.info("Leaving  newUser() in UserService");
         return user;
     }
 
@@ -53,11 +60,13 @@ public class UserService {
      */
     @PostMapping("/authenticate")
     UserEntity authenticateUser(@RequestBody UserEntity user) {
+        logger.info("Entering  authenticateUser() in UserService");
         User u = service.verifyUser(user.getUsername(), user.getPassword());
         UserEntity user1 = new UserEntity(u.getId(), u.getFirstName(), u.getLastName(), u.getEmail(), u.getRole(),
                 u.getStatus(), u.getUsername(), u.getPassword());
         if (user.getUsername().equals(user1.getUsername()) && user.getPassword().equals(user1.getPassword()))
             System.out.println("user" + user1.toString());
+        logger.info("Leaving  authenticateUser() in UserService");
         return user1;
     }
 
@@ -68,8 +77,10 @@ public class UserService {
      */
     @GetMapping("/findAll")
     List<User> getAllUser() {
+        logger.info("Entering  getAllUser() in UserService");
         List<User> user = new ArrayList<User>();
         user = service.getAllUser();
+        logger.info("Entering  getAllUser() in UserService");
         return user;
     }
 
@@ -81,6 +92,7 @@ public class UserService {
      */
     @DeleteMapping("/delete/{id}")
     Boolean deleteUser(@PathVariable("id") String id) {
+        logger.info("Entering  deleteUser() in UserService");
         return service.removeUser(id);
     }
 
@@ -92,9 +104,10 @@ public class UserService {
      */
     @PostMapping("/editUser")
     Boolean editUser(@RequestBody UserEntity user) {
-        System.out.println("ID OF USER" + user.getId());
+        logger.info("Entering  editUser() in UserService");
         User u = new User(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRole(),
                 user.getStatus(), user.getUsername(), user.getPassword());
+        logger.info("Leaving  editUser() in UserService");
         return service.editUser(u);
     }
 
@@ -106,6 +119,7 @@ public class UserService {
      */
     @GetMapping("/findByUserId/{id}")
     User findById(@PathVariable("id") String id) {
+        logger.info("Entering  findById() in UserService");
         return service.findById(id);
     }
 }

@@ -12,9 +12,13 @@ import java.util.List;
 import com.ht.data.entity.EventEntity;
 import com.ht.data.repository.EventRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class EventDAO implements EventDAOInterface<EventEntity> {
+
+    Logger logger = LoggerFactory.getLogger(EventDAO.class);
 
     // variable for the bookmarkRepository to call the rest service
     @Autowired
@@ -28,6 +32,7 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
      */
     @Override
     public EventEntity create(EventEntity event) {
+        logger.info("Entering create() in EventDAO");
         return eventRepository.save(event);
     }
 
@@ -38,6 +43,7 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
      */
     @Override
     public List<EventEntity> findAll() {
+        logger.info("Entering findAll() in EventDAO");
         return eventRepository.findAll();
     }
 
@@ -48,6 +54,7 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
      */
     @Override
     public List<EventEntity> findAllByUserId(String id) {
+        logger.info("Entering findAllByUserId() in EventDAO");
         return eventRepository.findAllByUserId(id);
     }
 
@@ -59,7 +66,7 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
      */
     @Override
     public EventEntity findById(String id) {
-        System.out.println("ID OF EVENT: " + id);
+        logger.info("Entering findById() in EventDAO");
         return eventRepository.findByID(id);
     }
 
@@ -71,7 +78,9 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
      */
     @Override
     public boolean updateEvent(EventEntity event) {
+        logger.info("Entering updateEvent() in EventDAO");
         eventRepository.save(event);
+        logger.info("Leaving updateEvent() in EventDAO");
         return true;
     }
 
@@ -82,7 +91,9 @@ public class EventDAO implements EventDAOInterface<EventEntity> {
      */
     @Override
     public boolean delete(String id) {
+        logger.info("Entering delete() in EventDAO");
         eventRepository.deleteById(id);
+        logger.info("Leaving delete() in EventDAO");
         return true;
     }
 

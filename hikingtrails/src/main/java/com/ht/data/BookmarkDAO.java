@@ -11,9 +11,14 @@ import java.util.List;
 
 import com.ht.data.entity.BookmarkEntity;
 import com.ht.data.repository.BookmarkRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
+
+    Logger logger = LoggerFactory.getLogger(BookmarkDAO.class);
 
     // variable for the bookmarkRepository to call the rest service
     @Autowired
@@ -27,6 +32,7 @@ public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
      */
     @Override
     public BookmarkEntity create(BookmarkEntity bookmark) {
+        logger.info("Entering create() in BookmarkDAO");
         return bookmarkRepository.save(bookmark);
     }
 
@@ -37,6 +43,7 @@ public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
      */
     @Override
     public List<BookmarkEntity> findAll() {
+        logger.info("Entering findAll() in BookmarkDAO");
         return bookmarkRepository.findAll();
 
     }
@@ -48,6 +55,7 @@ public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
      */
     @Override
     public List<BookmarkEntity> findAllByUserId(String id) {
+        logger.info("Entering findAllByUserId() in BookmarkDAO");
         return bookmarkRepository.findAllByUserId(id);
     }
 
@@ -59,6 +67,7 @@ public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
      */
     @Override
     public BookmarkEntity findById(String id) {
+        logger.info("Entering findById() in BookmarkDAO");
         return bookmarkRepository.findByID(id);
     }
 
@@ -69,6 +78,7 @@ public class BookmarkDAO implements BookmarkDAOInterface<BookmarkEntity> {
      */
     @Override
     public boolean delete(String id) {
+        logger.info("Entering delete() in BookmarkDAO");
         bookmarkRepository.deleteById(id);
         return true;
     }

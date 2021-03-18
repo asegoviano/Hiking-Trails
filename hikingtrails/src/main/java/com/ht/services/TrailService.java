@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import com.ht.business.TrailBusinessInterface;
 import com.ht.model.Trail;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +25,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/trailapi")
 public class TrailService {
+
+    Logger logger = LoggerFactory.getLogger(TrailService.class);
 
     /**
      * variable for the trail business service interface
@@ -36,8 +41,10 @@ public class TrailService {
      */
     @GetMapping("/findAll")
     List<Trail> getAllTrail() {
+        logger.info("Entering getAllTrail() in TrailService");
         List<Trail> trail = new ArrayList<Trail>();
         trail = service.getAllTrail();
+        logger.info("Leaving getAllTrail() in TrailService");
         return trail;
     }
 
@@ -49,6 +56,7 @@ public class TrailService {
      */
     @GetMapping("/findByTrailId/{id}")
     Trail findById(@PathVariable("id") String id) {
+        logger.info("Entering findById() in TrailService");
         return service.findById(id);
     }
 }

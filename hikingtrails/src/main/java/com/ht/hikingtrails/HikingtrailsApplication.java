@@ -13,5 +13,4 @@ public class HikingtrailsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HikingtrailsApplication.class, args);
 	}
-
 }
