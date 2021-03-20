@@ -39,10 +39,6 @@ class AdminPage extends React.Component {
         .then(response => {
             if(response.data != null) {
                 alert("The user was deleted successfully.");
-                //working on a better form of updating the table without rerouting the user to the same page/another page
-                // this.setState({
-                //     id: this.state.user.filter(id => tableData.id !== id)
-                // });
             }
         })
         //routes user to admin page
@@ -71,6 +67,27 @@ class AdminPage extends React.Component {
         window.location.href = "/Admin";
     }      
 
+    changeUserRole = (user) => {
+        //checks if users status is active
+        if(user.role === "User") {
+            // change user status from active to suspended
+            user.role = "Admin"
+            console.log("User role was changed,",user.role);
+        }
+        else {
+            //if users status is set to suspended then change to Active
+            user.role = "User"
+            console.log("User role was changed,",user.role);
+        }
+        //calls the rest service call for editing a user in order to change the users status 
+        Axios.post('http://localhost:8080/userapi/editUser', user)
+        .then(result => {
+            console.log(result);
+        })
+        //routes user to admin
+        window.location.href = "/Admin";
+    }
+
     //this method is responsible for populating the table with the users data using the getUsersData
       renderTableData() {
           return this.state.tableData.map((user,index) => {
@@ -80,9 +97,10 @@ class AdminPage extends React.Component {
                   <tr key={id}>
                       <td>{username}</td>
                       <td>{email}</td>
-                      <td>{role}</td>
+                      {/* <td>{role}</td> */}                      
+                      <td><Button variant="primary" onClick={this.changeUserRole.bind(this, user)}>{role}</Button></td>
                       {/* calls the changeUserStatus method */}
-                      <td><Button variant="primary" onClick={this.changeUserStatus.bind(this, user)}>{status}</Button></td>
+                      <td><Button variant="warning" onClick={this.changeUserStatus.bind(this, user)}>{status}</Button></td>
                       {/* calls the deleteUser method  */}
                       <td><Button variant="danger" onClick={this.deleteUser.bind(this, user.id)} >Remove</Button></td>
                   </tr>
@@ -95,7 +113,7 @@ class AdminPage extends React.Component {
             <div>
                 <Navbar />
             <div className="pageTitle">
-                Administrator Page
+                <h1>Administrator Page</h1>
             </div>
             <Table className="reactTable" striped border hover>    
             <thead>
