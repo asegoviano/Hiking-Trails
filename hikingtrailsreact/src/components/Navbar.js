@@ -31,6 +31,8 @@ class Navbar extends React.Component {
                             <span className="nav-link" href="#"><Link to="/home">Home</Link></span>
                             <span className="nav-link" href="#"><Link to="/profile">Profile</Link></span>
                             <span className="nav-link" href="#"><Link to="/explore">Exlpore</Link></span>
+                            <span className="nav-link" href="#"><Link to="/bookmark">My Bookmarks</Link></span>
+                            <span className="nav-link" href="#"><Link to="/event">My Events</Link></span>
                             <span className="nav-link" href="#"><Link to="/admin">Admin</Link></span>
                             <span className="nav-link" href="#"><Link to="/">Logout</Link></span>
                         </div>
