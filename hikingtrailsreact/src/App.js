@@ -39,11 +39,6 @@ class App extends React.Component {
                         }/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/Register" render = { () =>{ return (
-                            <RegisterPage/>
-                        )}}/>
-                    </Switch>
-                    <Switch>
                         <Route exact path ="/home" render = { () =>(
                             <HomePage dataFormParent={this.state}/>
                        )}/>
