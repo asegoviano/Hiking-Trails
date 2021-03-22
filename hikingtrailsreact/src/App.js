@@ -6,7 +6,6 @@
  */
 import React from 'react';
 import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
 import HomePage from './components/HomePage';
 import AdminPage from './components/AdminPage';
 import ProfilePage from './components/ProfilePage';
