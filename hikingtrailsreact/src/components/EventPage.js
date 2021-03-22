@@ -23,11 +23,18 @@ class EventPage extends React.Component {
        }
    }
 
-   async getEventData(){
+   // deletes an event
+    deleteEvent = (id) => {
+        Axios.delete('http://localhost:8080/eventapi/delete/' + id)  
+    }
+
+    //dsiplays the events by created by the user
+    async getEventData(){
         const res = await Axios.get(`http://localhost:8080/eventapi/findByUserId/${this.props.dataFormParent}`)
         console.log(res.data)
         this.setState({eventData: res.data})
     }
+
     componentDidMount(){
         this.getEventData()
     }
@@ -45,8 +52,8 @@ class EventPage extends React.Component {
                                 <Card.Text>User Distance: {userDistance}</Card.Text>
                                 <Card.Text>User Description: {userDescription}</Card.Text>
                                 <Card.Footer>
-                                    <Button className="mr-2" onClick variant="primary">Edit</Button>
-                                    <Button className="mr-2" onClick variant="danger">Remove</Button>
+                                    <Button className="mr-2" variant="primary" >Edit</Button>
+                                    <Button className="mr-2" variant="danger" onClick={this.deleteEvent.bind(this, event.id)} >Remove</Button>
                                 </Card.Footer>
                         </Card.Body>
                 </Card>
