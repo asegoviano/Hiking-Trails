@@ -117,3 +117,27 @@ body,
   align-items: flex-start;
   align-content: center, space-around;
 }
+.bookmarkbtn {
+  align-items: center;
+}
+
+/* Home Page*/
+.bookmarkIcon,
+.searchIcon {
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+}
+.rowCSS {
+  padding-left: 35%;
+  padding-top: 5%;
+}
+.rowCSSC {
+  padding-left: 7%;
+}
+
+.formInput {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+}
