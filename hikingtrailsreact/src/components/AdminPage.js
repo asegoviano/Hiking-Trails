@@ -34,19 +34,18 @@ class AdminPage extends React.Component {
     }
 
     //calls the rest service call for deleting a user from the spring boot application using the url
-    deleteUser = (id) => {
-        Axios.delete('http://localhost:8080/userapi/delete/' + id)
+    deleteUser = async(id) => {
+        await Axios.delete('http://localhost:8080/userapi/delete/' + id)
         .then(response => {
             if(response.data != null) {
                 alert("The user was deleted successfully.");
             }
         })
-        //routes user to admin page
-        window.location.href = "/Admin";
+        this.getUsersData();
       }
 
     // method is used for changing a users status from active to suspended or the other way around.
-    changeUserStatus = (user) => {
+    changeUserStatus = async(user) => {
         //checks if users status is active
         if(user.status === "Active") {
             // change user status from active to suspended
@@ -59,15 +58,14 @@ class AdminPage extends React.Component {
             console.log("User Status was changed,",user.status);
         }
         //calls the rest service call for editing a user in order to change the users status 
-        Axios.post('http://localhost:8080/userapi/editUser', user)
+        await Axios.post('http://localhost:8080/userapi/editUser', user)
         .then(result => {
             console.log(result);
         })
-        //routes user to admin
-        window.location.href = "/Admin";
+        this.getUsersData();
     }      
 
-    changeUserRole = (user) => {
+    changeUserRole = async(user) => {
         //checks if users status is active
         if(user.role === "User") {
             // change user status from active to suspended
@@ -80,12 +78,11 @@ class AdminPage extends React.Component {
             console.log("User role was changed,",user.role);
         }
         //calls the rest service call for editing a user in order to change the users status 
-        Axios.post('http://localhost:8080/userapi/editUser', user)
+        await Axios.post('http://localhost:8080/userapi/editUser', user)
         .then(result => {
             console.log(result);
         })
-        //routes user to admin
-        window.location.href = "/Admin";
+        this.getUsersData();
     }
 
     //this method is responsible for populating the table with the users data using the getUsersData
