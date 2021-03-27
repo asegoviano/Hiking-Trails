@@ -8,6 +8,7 @@ import React from 'react';
 import './style.css';
 import Axios from "axios";
 import FormInput from './FormInput';
+import {Button} from 'react-bootstrap';
 
 class LoginPage extends React.Component {
     
@@ -115,7 +116,11 @@ class LoginPage extends React.Component {
             this.setState({role : result.data.role});
             this.setState({status : result.data.status});
             this.setState({id : result.data.id});
-            this.props.testmethod(this.state.id, this.state.role);
+            if(this.state.status === "Suspended") {
+                alert("You're account has been suspended.")
+            } else {
+                this.props.testmethod(this.state.id, this.state.role);
+            }
         }
 
         render () {
@@ -132,7 +137,7 @@ class LoginPage extends React.Component {
                 <div className="box">
                     <FormInput id = "username" title = "Username" placeholder = "username" onChange={this.updateusername}/>
                     <FormInput id = "password" type="password" title = "Password" placeholder = "password" onChange={this.updatepassword}/>
-                    <button type="submit" className="login-btn" >Login</button>
+                    <Button type="submit" className="login-btn" variant="primary">Login</Button>
                 </div>
                 </form>
             </div>
@@ -228,9 +233,9 @@ class RegisterBox extends React.Component {
                     <FormInput id = "lastName" title = "Last Name" placeholder = "last name" onChange={this.updatelastName}/>
                     <FormInput id = "email" title = "Email" placeholder = "email" onChange={this.updateemail}/>
                     <FormInput id = "username" title = "Username" placeholder = "username" onChange={this.updateusername}/>
-                    <FormInput id = "password" title = "Password" placeholder = "password" onChange={this.updatepassword}/>
+                    <FormInput id = "password" title = "Password" type="password" placeholder = "password" onChange={this.updatepassword}/>
 
-                    <button type="submit" className="Register-btn">Register</button>
+                    <Button type="submit" className="Register-btn" variant="primary" >Register</Button>
                 </div>
                 </form>
             </div>
