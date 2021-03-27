@@ -21,8 +21,9 @@ class BookmarkPage extends React.Component {
         }
     }
  
-    deleteBookmark = (id) => {
-        Axios.delete('http://localhost:8080/bookmarkapi/delete/' + id)  
+    deleteBookmark = async(id) => {
+        await Axios.delete('http://localhost:8080/bookmarkapi/delete/' + id);  
+        this.getBookmarkData();
     }
 
     //calls the rest service call for finding all bookmarks from the Spring boot application using the url
@@ -40,11 +41,11 @@ class BookmarkPage extends React.Component {
         return this.state.bookmarkData.map((bookmark, index) => {
             const {id, trail} = bookmark
             return ( 
-                <Card key={id} border="dark" style={{ width: '18rem' }}>                               
+                <Card key={id} border="dark" style={{ width: '18rem' }} className="text-center">                               
                     <Card.Header> {trail.trailName}</Card.Header>
                         <Card.Body>
-                            <Card.Header>Location: {trail.city}, {trail.state}</Card.Header>
-                                <Card.Header>Distance: {trail.trailDistance} miles</Card.Header>
+                            <Card.Text>Location: {trail.city}, {trail.state}</Card.Text>
+                                <Card.Text>Distance: {trail.trailDistance} miles</Card.Text>
                                 <Card.Text>Description: {trail.description}</Card.Text>
                                 <Card.Footer>
                                     <Button className="bookmarkbtn" variant="danger" onClick={this.deleteBookmark.bind(this, bookmark.id)} >Remove</Button>
