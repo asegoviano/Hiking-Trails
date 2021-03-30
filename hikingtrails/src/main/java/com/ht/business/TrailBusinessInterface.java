@@ -24,5 +24,4 @@ public interface TrailBusinessInterface {
      * @return the result of the specefied trail
      */
     public Trail findById(String id);
-
 }
