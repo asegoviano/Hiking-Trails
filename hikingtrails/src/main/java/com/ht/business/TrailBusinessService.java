@@ -61,5 +61,4 @@ public class TrailBusinessService implements TrailBusinessInterface {
         logger.info("Leaving findById() in TrailBusinessService");
         return trailEntity;
     }
-
 }
