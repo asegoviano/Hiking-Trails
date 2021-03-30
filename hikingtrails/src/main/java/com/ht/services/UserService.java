@@ -80,7 +80,7 @@ public class UserService {
         logger.info("Entering  getAllUser() in UserService");
         List<User> user = new ArrayList<User>();
         user = service.getAllUser();
-        logger.info("Entering  getAllUser() in UserService");
+        logger.info("Leaving  getAllUser() in UserService");
         return user;
     }
 

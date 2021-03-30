@@ -37,5 +37,4 @@ public class TrailDAO implements TrailDAOInterface<TrailEntity> {
         logger.info("Entering findById() in TrailDAO");
         return trailRepository.findByID(id);
     }
-
 }

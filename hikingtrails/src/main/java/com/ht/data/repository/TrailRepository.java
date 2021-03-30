@@ -7,6 +7,7 @@
 package com.ht.data.repository;
 
 import com.ht.data.entity.TrailEntity;
+
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
