@@ -6,10 +6,12 @@
  */
 import React from 'react';
 import Navbar from './Navbar';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Tabs, Tab } from 'react-bootstrap';
 import Avatar from '../images/avatar.png';
 import FormInput from './FormInput';
 import Axios from 'axios';
+import EventPage from './EventPage';
+import BookmarkPage from './BookmarkPage';
 
 class ProfilePage extends React.Component {
     constructor(props) {
@@ -43,48 +45,45 @@ class ProfilePage extends React.Component {
         this.setState({role:  this.state.userProfile.role})
         this.setState({status:  this.state.userProfile.status})
         console.log("state of form = ", this.state);
-     }
+    }
     
-     updatelastName = (t) => {
+    updatelastName = (t) => {
          this.setState({lastName: t});
          console.log("state of form = ", this.state);
-     }
+    }
  
      updateemail = (t) => {
          this.setState({email: t});
          console.log("state of form = ", this.state);
-     }
+    }
  
      updateusername = (t) => {
          this.setState({username: t});
          console.log("state of form = ", this.state);
-     }
+    }
  
-     updatepassword = (t) => {
+    updatepassword = (t) => {
          this.setState({password: t});
          console.log("state of form = ", this.state);
-     }
+    }
  
      // create the user once the form has been submitted
-     handleFormSubmit = (e) => {
-         e.preventDefault();
-         console.log("in handle editform submit", this.state);
-       
-         this.editUser(this.state);
-     }
-
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        console.log("in handle editform submit", this.state);
+        this.editUser(this.state);
+    }
     async getUserID() {
         const res = await Axios.get(`http://localhost:8080/userapi/findByUserId/${this.state.userProfile.id}`)
         this.setState({userProfile: res.data})
         console.log("data set + collected ", this.state.userProfile)
     }
-
     editUser = async (user) => {
-        console.log("IN HERE", user)
-        Axios.post(`http://localhost:8080/userapi/editUser`, user)
-
+        console.log("in Edit User", user)
+        await Axios.post(`http://localhost:8080/userapi/editUser`, user)
+        this.closeModal();
+        this.componentDidMount();
     }
-
     componentDidMount() {
         this.getUserID()
     }
@@ -95,11 +94,11 @@ class ProfilePage extends React.Component {
                 <Navbar />
                 <div>
                     <h1>My Profile </h1>
-                    <img className="avatar" src={Avatar}/>
+                    <img className="avatar" src={Avatar} alt="profile avator"/>
                     <Button className="editButton" onClick={()=>{this.handleModal()}}>Edit MyProfile</Button>
                    
                         <Modal show={this.state.show}>
-                        <form onSubmit={this.handleFormSubmit}>
+                        <form onSubmit={this.handleFormSubmit} className="formInput">
                             <Modal.Header>Edit MyProfile</Modal.Header>
                                 <FormInput id="firstName" title="First Name" placeholder={this.state.userProfile.firstName} onChange={this.updatefirstName} default={this.state.userProfile.firstName}/>
                                 <FormInput id="lastName" title="Last Name" placeholder={this.state.userProfile.lastName} onChange={this.updatelastName} default={this.state.userProfile.lastName}/>
@@ -112,10 +111,16 @@ class ProfilePage extends React.Component {
                             </Modal.Footer>
                             </form>
                         </Modal>
-                    
-                </div>
-
-            </div>
+                            </div>
+                                <Tabs className="tabContainer" >
+                                    <Tab eventKey="home" title="My Bookmarks">
+                                        <BookmarkPage dataFormParent={ this.props.dataFormParent.passUserId}/>
+                                    </Tab>
+                                    <Tab eventKey="profile" title="My Events">
+                                        <EventPage dataFormParent={ this.props.dataFormParent.passUserId}/>
+                                    </Tab>
+                                </Tabs>
+                            </div>
         )
     }   
 }
