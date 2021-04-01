@@ -18,12 +18,15 @@ import {Router, Route, Switch} from 'react-router-dom';
 const history = createBrowserHistory();
 class App extends React.Component {
 
-    state = {passUserId: "1", role:"", user: false}
+    state = {passUserId: "1", role:"", user: false, alert:1}
     callbackFunction = (userData, userRole) => {
         console.log("in callbackfuction");
         this.setState({passUserId: userData})
         this.setState({role: userRole})
         this.setState({user: true})
+    }
+    testMethod(){
+        this.setState({alert: 1});
     }
 
     render() {
@@ -38,34 +41,28 @@ class App extends React.Component {
                         }/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/home" render = { () =>(
-                            <HomePage dataFormParent={this.state}/>
-                       )}/>
+                       <Route exact path ="/home" render = { () => (this.state.user ? <HomePage  dataFormParent={this.state}/> : <LoginPage dataFormParent={this.state.alert} callmethod = {this.callbackFunction}/>)
+                        }/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/Admin" render = { () =>{ return (
-                            <AdminPage/>
-                       )}}/>
+                       <Route exact path ="/Admin" render = { () => (this.state.user ? <AdminPage  dataFormParent={this.state}/> : <LoginPage dataFormParent={this.state.alert} callmethod = {this.callbackFunction}/>)
+                        }/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/Profile" render = { () =>{ return (
-                            <ProfilePage dataFormParent={this.state}/>
-                       )}}/>
+                       <Route exact path ="/Profile" render = { () => (this.state.user ? <ProfilePage  dataFormParent={this.state}/> : <LoginPage dataFormParent={this.state.alert} callmethod = {this.callbackFunction}/>)
+                        }/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/Explore" render = { () =>{ return (
-                            <ExplorePage dataFormParent={this.state.passUserId}/>
-                       )}}/>
+                       <Route exact path ="/Explore" render = { () => (this.state.user ? <ExplorePage  dataFormParent={this.state}/> : <LoginPage dataFormParent={this.state.alert} callmethod = {this.callbackFunction}/>)
+                        }/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/Bookmark" render = { () =>{ return (
-                            <BookmarkPage dataFormParent={this.state.passUserId}/>
-                       )}}/>
+                       <Route exact path ="/Bookmark" render = { () => (this.state.user ? <BookmarkPage  dataFormParent={this.state}/> : <LoginPage dataFormParent={this.state.alert} callmethod = {this.callbackFunction}/>)
+                        }/>
                     </Switch>
                     <Switch>
-                        <Route exact path ="/Event" render = { () =>{ return (
-                            <EventPage dataFormParent={this.state.passUserId}/>
-                       )}}/>
+                       <Route exact path ="/Event" render = { () => (this.state.user ? <EventPage  dataFormParent={this.state}/> : <LoginPage dataFormParent={this.state.alert} callmethod = {this.callbackFunction}/>)
+                        }/>
                     </Switch>
                 </div>
             </Router>
