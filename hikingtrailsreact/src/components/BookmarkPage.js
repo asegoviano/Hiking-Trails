@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import React from 'react';
-import Navbar from './Navbar';
 import './style.css';
 import {Card, Button} from 'react-bootstrap';
 
@@ -59,10 +58,6 @@ class BookmarkPage extends React.Component {
     render () {
         return  (
             <div>
-                <Navbar />
-            <div className="pageTitle">
-                <h1>Bookmark Trails Page</h1>
-            </div>
             <div className="cardContainer" >
                 <div className="trailCards">
                     {this.renderBookmarkData()}
