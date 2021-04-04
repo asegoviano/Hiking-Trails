@@ -6,7 +6,7 @@
  */
 import React from 'react';
 import Navbar from './Navbar';
-import { Modal, Button, Tabs, Tab } from 'react-bootstrap';
+import { Modal, Button, Tabs, Tab, Col } from 'react-bootstrap';
 import Avatar from '../images/avatar.png';
 import FormInput from './FormInput';
 import Axios from 'axios';
@@ -66,7 +66,7 @@ class ProfilePage extends React.Component {
          this.setState({password: t});
          console.log("state of form = ", this.state);
     }
- 
+
      // create the user once the form has been submitted
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -85,6 +85,7 @@ class ProfilePage extends React.Component {
         this.componentDidMount();
     }
     componentDidMount() {
+        document.title="Profile Page";
         this.getUserID()
     }
 
@@ -93,10 +94,10 @@ class ProfilePage extends React.Component {
             <div>
                 <Navbar />
                 <div>
-                    <h1>My Profile </h1>
-                    <img className="avatar" src={Avatar} alt="profile avator"/>
-                    <Button className="editButton" onClick={()=>{this.handleModal()}}>Edit MyProfile</Button>
-                   
+                    <Col xs lg="2">
+                        <img className="avatar" src={Avatar} alt="profile avator"/>
+                        <Button className="editButton" onClick={()=>{this.handleModal()}}>Edit MyProfile</Button>
+                    </Col>
                         <Modal show={this.state.show}>
                         <form onSubmit={this.handleFormSubmit} className="formInput">
                             <Modal.Header>Edit MyProfile</Modal.Header>
@@ -112,15 +113,19 @@ class ProfilePage extends React.Component {
                             </form>
                         </Modal>
                             </div>
-                                <Tabs className="tabContainer" >
-                                    <Tab eventKey="home" title="My Bookmarks">
-                                        <BookmarkPage dataFormParent={ this.props.dataFormParent.passUserId}/>
-                                    </Tab>
-                                    <Tab eventKey="profile" title="My Events">
-                                        <EventPage dataFormParent={ this.props.dataFormParent.passUserId}/>
-                                    </Tab>
-                                </Tabs>
+                        <div className="tabs"> 
+                                <Col xs={12} md={12} className="py-2">
+                                    <Tabs className="tabContainer">
+                                        <Tab eventKey="home" title="My Bookmarks" className="tab1">
+                                            <BookmarkPage dataFormParent={ this.props.dataFormParent.passUserId}/>
+                                        </Tab>
+                                        <Tab eventKey="profile" title="My Events" className="tab2">
+                                            <EventPage dataFormParent={ this.props.dataFormParent.passUserId}/>
+                                        </Tab>
+                                    </Tabs>
+                                </Col>
                             </div>
+                        </div>
         )
     }   
 }
