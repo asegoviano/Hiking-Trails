@@ -9,10 +9,11 @@ import './style.css';
 import Axios from "axios";
 import FormInput from './FormInput';
 import {Button} from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 
 class LoginPage extends React.Component {
     
-    state = {isLoginOpen: true, isRegisterOpen: false, id:"", role:""};
+    state = {isLoginOpen: true, isRegisterOpen: false, id:"", role:"", alert: 0};
 
     //displays the login form if the register form is not being displayed
     showLoginBox() {
@@ -30,9 +31,14 @@ class LoginPage extends React.Component {
         this.props.callmethod(this.state.id, this.state.role);
     }
     
+    componentDidMount(){
+        this.setState({alert: this.props.dataFormParent});
+        console.log(this.props.dataFormParent);
+    }
     render() {
         return (
-            <div className="base-container">
+            <div className="base-container" >
+                {this.state.alert === 1 ? <Alert variant="danger" style={{marginTop: '2%'}}>Please Login First to access the website!</Alert> : <br/>}
                 <div className="form-controller">
                     <div className="controller" onClick={this.showLoginBox.bind(this)} required >
                         Login
@@ -84,7 +90,8 @@ class LoginPage extends React.Component {
                 status: "Active",
                 username: "",
                 password: "",
-                errors: []
+                errors: [],
+                alert: 0
             };
         //takes in the username that was entered into the form for the username field
         updateusername = (t) => {
@@ -194,7 +201,6 @@ class RegisterBox extends React.Component {
         e.preventDefault();
         console.log("in handle form submit", this.state);
         const {firstName, lastName, email, username, password} = this.state;
-        
         //calls the validate method and checks if all fields are meet the parameters that were set for validation
         const errors = validate(firstName, lastName, email, username, password);
         if(errors.length > 0) {
