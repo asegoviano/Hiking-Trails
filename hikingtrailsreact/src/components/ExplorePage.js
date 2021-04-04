@@ -10,6 +10,7 @@ import Navbar from './Navbar';
 import './style.css';
 import {Card, Button, Modal} from 'react-bootstrap';
 import FormInput from './FormInput';
+import Search from './Search';
 
 class ExplorePage extends React.Component {
 
@@ -17,7 +18,10 @@ class ExplorePage extends React.Component {
         super ();
         this.state ={
             show:null,
+            search: "",
+            cardstate: [],
             trailData: [{
+                id: "",
                 trailName: "",
                 city: "",
                 state: "",
@@ -58,20 +62,31 @@ class ExplorePage extends React.Component {
     closeModal() {
         this.setState({show:!this.state.show})
     }
-
+    searchSubmit = () => {
+        let trails = [];
+        this.state.trailData.map((trail, index) => {
+            if(trail.trailName === this.state.search){
+                console.log("tral log ", trail.trailName, this.state.search)
+               trails.push(trail);
+            }
+        })
+        this.setState({cardstate: trails}, () => console.log("SEARCH BAR RESULT ", this.state.cardstate));
+    }
     updateUserDistance = (t) => {
         this.setState({userDistance: t});
         console.log("state of form = ", this.state.userDistance);
     }
-
+    updateSearch = (t) => {
+        this.setState({search: t});
+        console.log("state of search = ", this.state.search);
+    }
     updateUserDescription = (t) => {
         this.setState({userDescription: t});
         console.log("state of form = ", this.state);
     }
-
     // sets the trailData that was clicked on and user id for creating the bookmark  
     async addBookmark(traildata){
-       let userID = this.props.dataFormParent;
+       let userID = this.props.dataFormParent.passUserId;
        await this.setState({bookmarkModel:{trail:traildata, user:userID}});
         const bookData = this.state.bookmarkModel
         this.bookmarkCreate(bookData);
@@ -88,7 +103,7 @@ class ExplorePage extends React.Component {
         this.addEvent();
     }
     async addEvent() {
-        let userID = this.props.dataFormParent;
+        let userID = this.props.dataFormParent.passUserId;
         this.setState({user:userID});
         const res = await Axios.post('http://localhost:8080/eventapi/create', this.state)
         console.log(res.data)
@@ -100,7 +115,6 @@ class ExplorePage extends React.Component {
         console.log("in handle event Model submit", e.target.trail.value);
         this.getTrail(e.target.trail.value);
     }
-    
     //calls the rest service call for finding all trails from the Spring boot application using the url
     async getTrailData(){
         const res = await Axios.get('http://localhost:8080/trailapi/findAll')
@@ -116,8 +130,8 @@ class ExplorePage extends React.Component {
         return this.state.trailData.map((trail, index) => {
             const{id, trailName, city, state, trailDistance, description} = trail
             return (
-               <div className="py-2">
-               <Card key={index} border="dark" style={{ width: '18rem' }} className="text-center">
+                <div className="py-2">
+               <Card key={index} border="dark" style={{ width: '18rem' }} className="card text-center" >
                     <Card.Header>{trailName}</Card.Header>
                         <Card.Body>
                                 <Card.Text>Location: {city}, {state}</Card.Text>
@@ -127,6 +141,40 @@ class ExplorePage extends React.Component {
                                     &nbsp;
                                     <Button className="explorebtn2" variant="primary" onClick={()=>{this.handleModal(trail)}} >Add Event</Button>
                                     <Modal show={this.state.show === id }>
+                                        <form onSubmit={this.handleFormSubmit} className="formInput">
+                                        <Modal.Header>{this.state.modalEventData.trailName}</Modal.Header>
+                                            <Modal.Body>
+                                                <FormInput id="trail" type="hidden" default={this.state.modalEventData.id} />
+                                                <FormInput id="userDistance" title="Distance Traveled:"onChange={this.updateUserDistance} />
+                                                <FormInput id="userDescription" title="Description:" onChange={this.updateUserDescription} />
+                                            </Modal.Body>
+                                        <Modal.Footer>
+                                                <Button type="submit" >Add</Button>
+                                                <Button onClick={()=>{this.closeModal()}}>Cancel</Button>
+                                        </Modal.Footer>
+                                        </form>
+                                    </Modal>
+                        </Card.Body>
+                </Card>
+            </div>
+            )
+        })  
+    }
+    renderTrailSearch() {
+        return this.state.cardstate.map((trail, index) => {
+            const{id, trailName, city, state, trailDistance, description} = trail
+            return (
+                <div className="py-2">
+               <Card key={index} border="dark" style={{ width: '18rem' }} className="card text-center" >
+                    <Card.Header>{trailName}</Card.Header>
+                        <Card.Body>
+                                <Card.Text>Location: {city}, {state}</Card.Text>
+                                <Card.Text>Distance: {trailDistance} miles</Card.Text>
+                                <Card.Text>Description: {description}</Card.Text>
+                                    <Button className="explorebtn1" variant="primary" onClick={() => this.addBookmark(trail)} >Add Bookmark</Button>
+                                    &nbsp;
+                                    <Button className="explorebtn2" variant="primary" onClick={()=>{this.handleModal(trail)}} >Add Event</Button>
+                                    <Modal show={this.state.show === id}>
                                         <form onSubmit={this.handleFormSubmit} className="formInput">
                                         <Modal.Header>{this.state.modalEventData.id}</Modal.Header>
                                             <Modal.Body>
@@ -146,19 +194,21 @@ class ExplorePage extends React.Component {
             )
         })  
     }
+
     
     render () {
         return  (
             <div>
                 <Navbar />
-            <div className="pageTitle">
-                <h1>Explore Trails Page</h1>
-            </div>
-            <div className="cardContainer" >
-                <div className="trailCards">
-                {this.renderTrailData()}
+                <div className="searchDiv">
+                    <Search onChange={this.updateSearch}/>
+                    <Button className="searchbtn" onClick={()=>{this.searchSubmit()}}>Search</Button>
                 </div>
-            </div>
+                <div className="cardContainer" >
+                    <div className="trailCards">
+                    {this.state.cardstate.length !== 0 ? this.renderTrailSearch(): this.renderTrailData()}
+                    </div>
+                </div>
             </div>
         )
     }
