@@ -79,7 +79,7 @@ public class BookmarkService {
         return service.findById(id);
     }
 
-     /**
+    /**
      * rest service call for finding all bookmarks by userID
      * 
      * @return list of all bookmarks related to the userID
