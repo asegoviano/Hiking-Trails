@@ -7,44 +7,36 @@
 import React from 'react'
 import {Carousel, Container, Row, Col, Image} from 'react-bootstrap';
 import Navbar from "./Navbar";
-import trail1 from '../images/trail1.jpg';
-import trail2 from '../images/trail2.jpg';
-import trail3 from '../images/trail3.jpg';
-import trail4 from '../images/trail4.jpg';
 import bookmarkIcon from '../images/bookmarkIcon.png';
 import searchIcon from '../images/searchIcon.png';
+import tr1 from '../images/tr1.jpg';
 
 class HomePage extends React.Component {
     render() {
         return (
             <div>
                 <Navbar/>
-                    <h1>Welcome Page</h1>
                     <Container>
                         <Row className="rowCSSC">
-                        <Carousel interval={2000} keyboard={false} pauseOnHover={false}>
-                            <Carousel.Item style={{'height':"400px", 'width':"1000px"}} >
-                                <img style={{'height':"400px", 'width':"1000px"}} className="d-block w-100" src={trail1} alt="Trail"/>
-                            </Carousel.Item>
-                            <Carousel.Item style={{'height':"400px", 'width':"1000px"}} >
-                                <img style={{'height':"400px", 'width':"1000px"}} className="d-block w-100" src={trail2} alt="Trail"/>
-                            </Carousel.Item>
-                            <Carousel.Item style={{'height':"400px", 'width':"1000px"}} >
-                                <img style={{'height':"400px", 'width':"1000px"}} className="d-block w-100" src={trail3} alt="Trail" />
-                            </Carousel.Item>
-                            <Carousel.Item style={{'height':"400px", 'width':"1000px"}} >
-                                <img style={{'height':"400px", 'width':"1000px"}} className="d-block w-100" src={trail4} alt="Trail" />
-                            </Carousel.Item>
-                        </Carousel>
-                    </Row>
+                                <img style={{'height':"425px", 'width':"400px"}} className="d-block w-100" src={tr1} alt="Trail"/>
+                        </Row>
                     <Row className="rowCSS">
-                        <Col xs={6} md={4}>
-                            <Image className="bookmarkIcon" src={bookmarkIcon} alt="bookmarkIcon" roundedCircle/>
-                            <text>testing </text>
-                        </Col>
-                        <Col xs={6} md={4}>
-                            <Image className="searchIcon" src={searchIcon} alt="searchIcon" roundedCircle/>
-                        </Col>
+                        <div className="logoBox">
+                            <Col xs={6} md={4}>
+                                <Image className="bookmarkIcon" src={bookmarkIcon} alt="bookmarkIcon" height='100px' width='120px'/>
+                                <Row>
+                                    <text>Go the explore page to bookmark a trail and keep track of which ones you like the most in your profile.</text>
+                                </Row>
+                            </Col>
+                        </div>
+                        <div>
+                            <Col xs={6} md={4}>
+                                <Image className="searchIcon" src={searchIcon} alt="searchIcon" roundedCircle/>
+                                <Row>
+                                    <text>testing search icon description </text>
+                                </Row>
+                            </Col>
+                        </div>
                     </Row>
                 </Container>
             </div>

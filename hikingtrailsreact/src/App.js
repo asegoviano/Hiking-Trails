@@ -22,6 +22,9 @@ class App extends React.Component {
     callbackFunction = (userData, userRole) => {
         console.log("in callbackfuction");
         this.setState({passUserId: userData})
+        if(this.state.userRole === "Admin") {
+            this.setState({userAdmin: true})
+        }
         this.setState({role: userRole})
         this.setState({user: true})
     }
