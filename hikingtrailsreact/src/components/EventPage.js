@@ -44,24 +44,26 @@ class EventPage extends React.Component {
         const res = await Axios.get(`http://localhost:8080/eventapi/findByEventId/${id}`)
         console.log(res.data)
         this.setState({trail: res.data});
-       // this.editEvent();
+       this.editEvent();
     }
     
     editEvent = async () => {
         this.setState({id: this.state.modalEventData.id})
         this.setState({user: this.state.modalEventData.user})
         console.log("in Edit Event", this.state)
-        // const res = await Axios.post(`http://localhost:8080/eventapi/editEvent`, this.state)
-        // console.log(res.data)
-        // this.closeModal()
-        // this.getEventData()
+        const res = await Axios.post(`http://localhost:8080/eventapi/editEvent`, this.state)
+        console.log(res.data)
+        this.closeModal()
+        this.getEventData()
     }
 
+    //update user distance of event
     updateUserDistance = async(t) => {
         await this.setState({userDistance: t});
         console.log("state of form = ", this.state.userDistance);
     }
 
+    //update description of event
     updateUserDescription = async(t) => {
         await this.setState({userDescription: t});
         console.log("state of form = ", this.state);
@@ -97,7 +99,7 @@ class EventPage extends React.Component {
                                 <Card.Text>My Distance: {userDistance}</Card.Text>
                                 <Card.Text>My Description: {userDescription}</Card.Text>
                                 <Card.Footer>
-                                    <Button className="mr-2" variant="primary" onClick={()=>{this.handleModal(event)}} >Edit</Button>
+                                    {/* <Button className="mr-2" variant="primary" onClick={()=>{this.handleModal(event)}} >Edit</Button> */}
                                     <Button className="mr-2" variant="danger" onClick={this.deleteEvent.bind(this, event.id)} >Remove</Button>
                                 <Modal show={this.state.show}>
                                     <form onSubmit={this.handleFormSubmit} className="formInput">
