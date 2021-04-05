@@ -29,8 +29,8 @@ class Navbar extends React.Component {
                         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div className="navbar-nav" >
                             <span className="nav-link" href="#"><Link to="/profile">Profile</Link></span>
-                            <span className="nav-link" href="#"><Link to="/explore">Exlpore</Link></span>
-                            {/* {dataFormParent==='Admin' ? <span className="nav-link" href="#"><Link to="/admin">Admin</Link></span> : <span/>} */}
+                            <span className="nav-link" href="#"><Link to="/explore">Exlpore</Link></span>                            
+                            <span className="nav-link" href="#"><Link to="/admin">Admin</Link></span>
                             <span className="nav-link" href="#"><Link to="/">Logout</Link></span>
                         </div>
                         </div>
