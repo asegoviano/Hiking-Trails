@@ -37,7 +37,7 @@ The application is deployed to Heroku using a pipeline that auto deploys both ap
 ## What New Technologies to Myself Were Implemented?
 Spring Boot, React, MongoDB, and Heroku were all-new technologies that were chosen to be implemented into the application. These technologies were chosen because I wanted to challenge myself by having to learn them on my own and develop a project myself with what I have taught myself. React was specifically chosen for the fact that is a popular technology used by many companies in today’s industry. Having prior experience in Spring made Spring Boot easier and faster to learn and develop the back-end along with implementing MongoDB as the chosen database. Deploying an application for the first time to Heroku was such a great experience seeing as there were no issues encountered when deploying both applications and creating their pipelines. 
 
-## Daigrams
+## Diagrams
 ![5 ExplorePage](https://user-images.githubusercontent.com/37810476/113539959-d61eb580-9593-11eb-8e20-742e12da6a32.PNG)
 ![4 ProfileEvents](https://user-images.githubusercontent.com/37810476/113539971-e171e100-9593-11eb-9de4-f1161fc6c105.PNG)
 ### The wireframes displayed above are an example of how the design of the application came to be.
