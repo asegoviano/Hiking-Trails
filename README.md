@@ -58,3 +58,6 @@ Spring Boot, React, MongoDB, and Heroku were all-new technologies that were chos
 * CSS design issues for certain pages such as responsive pages
 * I planned on implementing a feature for editing an event but failed to get it working before the deadline.
 * Components on the React application could have been better created for reusability
+
+## Video Demo:
+* https://www.loom.com/share/e7e25b13f3584afd9426c6b7f64d426a
